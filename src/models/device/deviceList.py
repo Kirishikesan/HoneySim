@@ -3,4 +3,6 @@ class DeviceList(list):
         for device in self:
             if (id==device.id):
                 return device
+            else:
+                return None
     

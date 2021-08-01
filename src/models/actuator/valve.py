@@ -1,4 +1,4 @@
 from baseActuator import BaseActuator
 
 class Valve(BaseActuator):
-    pass
+    def __init__(self,)
