@@ -1,4 +1,4 @@
 from baseComponent import BaseComponent
 
-class Tank(BaseComponent):
+class Pipeline(BaseComponent):
     pass
