@@ -23,6 +23,9 @@ class Tank(BaseComponent):
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
 
+    def getFlow(self):
+        return self._flow
+        
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
 

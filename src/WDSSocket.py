@@ -19,6 +19,7 @@ class WDSSocket:
             clientConnection,clientAddress=self._wdsSocket.accept()
             print('Connection accepted from ',clientAddress)
             clientConnection.send('Thank you for connecting'.encode('utf-8'))
+            ##The connection should be transferred to the relevant device here with 
             clientConnection.close()      
     def close(self):
         self._wdsSocket.close()
