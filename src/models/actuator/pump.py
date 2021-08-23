@@ -9,7 +9,7 @@ class Pump(BaseActuator):
         self._resolution=resolution
     
     def setState(self): 
-        flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution-1))
+        flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution))
         self._componentIn.UpdateFlowOut(flow)
 
     

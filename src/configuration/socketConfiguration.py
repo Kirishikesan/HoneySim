@@ -1,3 +1,3 @@
-PORT=3000
+PORT=502
 IP='localhost'
 CONNECTIONS=10

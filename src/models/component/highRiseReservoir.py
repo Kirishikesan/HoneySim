@@ -1,17 +1,16 @@
 from baseComponent import BaseComponent
 
-class Pipeline(BaseComponent):
-    def __init__(self,componentIn,componentOut,length,diameter,flowIn=0,flowOut=0):
+class highRiseReservoir(BaseComponent):
+    def __init__(self,componentIn,height,baseArea,flowIn = 0,flowOut = 0):
         super.__init__()
         self._componentIn=componentIn
-        self._componentOut=componentOut
-        self._length=length
-        self._diameter=diameter
+        self._height=height
+        self._baseArea=baseArea
         self._flowIn=flowIn
-        self._flowOut=flowOut
+        self.updateFlowOut(flowOut)
         self._flow=0
         self.updateFlow()
-    
+
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut
         self.updateFlow()
@@ -27,7 +26,9 @@ class Pipeline(BaseComponent):
 
     def getFlow(self):
         return self._flow
-
+        
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
 
+
+    

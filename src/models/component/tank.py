@@ -2,7 +2,9 @@ from baseComponent import BaseComponent
 
 class Tank(BaseComponent):
     def __init__(self,componentIn,componentOut,height,baseArea,flowIn = 0,flowOut = 0):
-        super.__init__(componentIn,componentOut)
+        super.__init__()
+        self._componentIn=componentIn
+        self._componentOut=componentOut
         self._height=height
         self._baseArea=baseArea
         self._flowIn=flowIn
