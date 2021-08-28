@@ -6,15 +6,16 @@ class Well(BaseComponent):
         self._componentOut=componentOut
         self._height=height
         self._baseArea=baseArea
+        self._waterLevel=waterLevel
         self._flowIn=flowIn
-        self.updateFlowOut(flowOut)
+        self._flowOut=flowOut
         self._flow=0
+        self.attach(componentOut)
         self.updateFlow()
 
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut
         self.updateFlow()
-        self._update_observers()
     
     def updateFlowIn(self,flowIn):
         self._flowIn=flowIn
@@ -22,6 +23,7 @@ class Well(BaseComponent):
     
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
+        self._update_observers()
 
     def getFlow(self):
         return self._flow

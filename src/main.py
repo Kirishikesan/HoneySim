@@ -1,7 +1,9 @@
 from WDSmodbus import ModbusServer
+from 
 
 #Device Import script should be run to create relevant devices integrated with the modbus server
 
+Well=well()
 
 
 
