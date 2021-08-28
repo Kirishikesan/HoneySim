@@ -11,6 +11,7 @@ from models.actuator.valve import Valve
 from models.sensor.flowMeterSensor import FlowMeterSensor
 from models.sensor.waterLevelSensor import WaterLevelSensor
 from models.sensor.hydroPressureSensor import HydroPressureSensor
+from models.device.baseDevice import BaseDevice
 
 #Device Import script should be run to create relevant devices integrated with the modbus server
 
@@ -124,6 +125,22 @@ Device14Modbus=ModbusServer("",513)
 Device14Modbus.run()
 Device15Modbus=ModbusServer("",514)
 Device15Modbus.run()
+
+Device1=BaseDevice(500,Device1Modbus)
+Device2=BaseDevice(501,Device2Modbus)
+Device3=BaseDevice(502,Device3Modbus)
+Device4=BaseDevice(503,Device4Modbus)
+Device5=BaseDevice(504,Device5Modbus)
+Device6=BaseDevice(505,Device6Modbus)
+Device7=BaseDevice(506,Device7Modbus)
+Device8=BaseDevice(507,Device8Modbus)
+Device9=BaseDevice(508,Device9Modbus)
+Device10=BaseDevice(509,Device10Modbus)
+Device11=BaseDevice(510,Device11Modbus)
+Device12=BaseDevice(511,Device12Modbus)
+Device13=BaseDevice(512,Device13Modbus)
+Device14=BaseDevice(513,Device14Modbus)
+Device15=BaseDevice(514,Device15Modbus)
 
 
 
