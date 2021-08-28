@@ -1,10 +1,10 @@
 from models.component.baseComponent import BaseComponent
-from threading import Thread
-import time 
+# from threading import Thread
+# import time 
 
 class TankThreeInlet(BaseComponent):
     def __init__(self,componentIn1,componentIn2,componentIn3,height,baseArea,flowIn = 0,flowOut = 0):
-        super.__init__()
+        super().__init__()
         self._componentIn1=componentIn1
         self._componentIn2=componentIn2
         self._componentIn3=componentIn3
@@ -34,13 +34,13 @@ class TankThreeInlet(BaseComponent):
     def getFlow(self):
         return self._flow
 
-    def updateWaterLevel(self):
-        self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*5
-        time.sleep(5)
+    # def updateWaterLevel(self):
+    #     self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*5
+        # time.sleep(5)
         
     def __call__(self):
-        self.updateFlowIn(self._componentIn1.getFlow()+self._componentIn2.getFlow(),self._componentIn3.getFlow())
-        Thread(target=self.updateWaterLevel, args=self).start()
+        self.updateFlowIn(self._componentIn1.getFlow()+self._componentIn2.getFlow()+self._componentIn3.getFlow())
+        # Thread(target=self.updateWaterLevel, args=self).start()
 
 
     

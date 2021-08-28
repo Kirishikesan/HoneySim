@@ -2,7 +2,7 @@ from models.component.baseComponent import BaseComponent
 
 class HighRiseReservoir(BaseComponent):
     def __init__(self,componentIn,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):
-        super.__init__()
+        super().__init__()
         self._componentIn=componentIn
         self._height=height
         self._baseArea=baseArea

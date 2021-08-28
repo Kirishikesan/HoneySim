@@ -37,7 +37,7 @@ RetentionToStoragePipe3.addComponentOut(StorageTank)
 StoragePumpToValve=Pipeline(StorageTank,200,0.2,1,1)
 StorageTank.addComponentOut(StoragePumpToValve)
 Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
-StoragePumpToValve.addComponentOut(HighRiseReservoir)
+StoragePumpToValve.addComponentOut(Reservoir)
 
 Pump1=Pump(RiverWell,PipeFromWell,8,2,0,0.5)
 Valve1=Valve(PipeThreeWay,RetentionTank1,8,2,0,1)
@@ -49,50 +49,50 @@ Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,8,2,0,1)
 Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,0.5)
 Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,1)
 
-WellWaterLevelSensor=WaterLevelSensor()
-WellPressureSensor=HydroPressureSensor()
+WellWaterLevelSensor=WaterLevelSensor(RiverWell)
+WellPressureSensor=HydroPressureSensor(RiverWell)
 
-Pump1FlowSensor=FlowMeterSensor()
-Pump1PressureSensor=HydroPressureSensor()
+Pump1FlowSensor=FlowMeterSensor(PipeFromWell)
+Pump1PressureSensor=HydroPressureSensor(PipeFromWell)
 
-Valve1FlowSensor=FlowMeterSensor()
-Valve1PressureSensor=HydroPressureSensor()
+Valve1FlowSensor=FlowMeterSensor(PipeThreeWay)
+Valve1PressureSensor=HydroPressureSensor(PipeThreeWay)
 
-Valve2FlowSensor=FlowMeterSensor()
-Valve2PressureSensor=HydroPressureSensor()
+Valve2FlowSensor=FlowMeterSensor(PipeThreeWay)
+Valve2PressureSensor=HydroPressureSensor(PipeThreeWay)
 
-Valve3FlowSensor=FlowMeterSensor()
-Valve3PressureSensor=HydroPressureSensor()
+Valve3FlowSensor=FlowMeterSensor(PipeThreeWay)
+Valve3PressureSensor=HydroPressureSensor(PipeThreeWay)
 
-Retention1WaterLevelSensor=WaterLevelSensor()
-Retention1PressureSensor=HydroPressureSensor()
+Retention1WaterLevelSensor=WaterLevelSensor(RetentionTank1)
+Retention1PressureSensor=HydroPressureSensor(RetentionTank1)
 
-Retention2WaterLevelSensor=WaterLevelSensor()
-Retention2PressureSensor=HydroPressureSensor()
+Retention2WaterLevelSensor=WaterLevelSensor(RetentionTank2)
+Retention2PressureSensor=HydroPressureSensor(RetentionTank2)
 
-Retention3WaterLevelSensor=WaterLevelSensor()
-Retention3PressureSensor=HydroPressureSensor()
+Retention3WaterLevelSensor=WaterLevelSensor(RetentionTank3)
+Retention3PressureSensor=HydroPressureSensor(RetentionTank3)
 
-Valve4FlowSensor=FlowMeterSensor()
-Valve4PressureSensor=HydroPressureSensor()
+Valve4FlowSensor=FlowMeterSensor(RetentionToStoragePipe1)
+Valve4PressureSensor=HydroPressureSensor(RetentionToStoragePipe1)
 
-Valve5FlowSensor=FlowMeterSensor()
-Valve5PressureSensor=HydroPressureSensor()
+Valve5FlowSensor=FlowMeterSensor(RetentionToStoragePipe2)
+Valve5PressureSensor=HydroPressureSensor(RetentionToStoragePipe2)
 
-Valve6FlowSensor=FlowMeterSensor()
-Valve6PressureSensor=HydroPressureSensor()
+Valve6FlowSensor=FlowMeterSensor(RetentionToStoragePipe3)
+Valve6PressureSensor=HydroPressureSensor(RetentionToStoragePipe3)
 
-StorageWaterLevelSensor=WaterLevelSensor()
-StoragePressureSensor=HydroPressureSensor()
+StorageWaterLevelSensor=WaterLevelSensor(StorageTank)
+StoragePressureSensor=HydroPressureSensor(StorageTank)
 
-Pump2FlowSensor=FlowMeterSensor()
-Pump2PressureSensor=HydroPressureSensor()
+Pump2FlowSensor=FlowMeterSensor(StoragePumpToValve)
+Pump2PressureSensor=HydroPressureSensor(StoragePumpToValve)
 
-Valve7FlowSensor=FlowMeterSensor()
-Valve7PressureSensor=HydroPressureSensor()
+Valve7FlowSensor=FlowMeterSensor(Reservoir)
+Valve7PressureSensor=HydroPressureSensor(Reservoir)
 
-ReservoirWaterLevelSensor=WaterLevelSensor()
-ReservoirPressureSensor=HydroPressureSensor()
+ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
+ReservoirPressureSensor=HydroPressureSensor(Reservoir)
 
 
 Device1Modbus=ModbusServer("",500)
@@ -200,10 +200,10 @@ Device15.addSensor(ReservoirPressureSensor)
 
 
 
-wdsModbus=ModbusServer("",502)
-wdsModbus.run()
-wdsModbus.update(3,0,[54,88])
-print(wdsModbus.get(3,0,5))
+# wdsModbus=ModbusServer("",502)
+# wdsModbus.run()
+# wdsModbus.update(3,0,[54,88])
+# print(wdsModbus.get(3,0,5))
 
 
 

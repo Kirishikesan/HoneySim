@@ -1,10 +1,10 @@
 from models.component.baseComponent import BaseComponent
-from threading import Thread
-import time 
+# from threading import Thread
+# import time 
 
 class Tank(BaseComponent):
     def __init__(self,componentIn,height,baseArea,flowIn = 0,flowOut = 0):
-        super.__init__()
+        super().__init__()
         self._componentIn=componentIn
         self._height=height
         self._baseArea=baseArea
@@ -32,13 +32,13 @@ class Tank(BaseComponent):
     def getFlow(self):
         return self._flow
 
-    def updateWaterLevel(self):
-        self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*5
-        time.sleep(5)
+    # def updateWaterLevel(self):
+    #     self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*5
+    #     time.sleep(5)
         
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
-        Thread(target=self.updateWaterLevel, args=self).start()
+        # Thread(target=self.updateWaterLevel, args=self).start()
 
 
     

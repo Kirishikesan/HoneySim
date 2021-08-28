@@ -5,10 +5,6 @@ class BaseActuator(metaclass=abc.ABCMeta):
         self._componentIn=componentIn
         self._componentOut=componentOut
 
-    @abc.abstractproperty
-    def State(self,state):
-        pass
-
     @abc.abstractmethod
     def setState(self,state):
         pass
