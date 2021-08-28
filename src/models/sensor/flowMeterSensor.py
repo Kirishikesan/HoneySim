@@ -1,6 +1,6 @@
 from baseSensor import BaseSensor
 
-class flowMeterSensor(BaseSensor):
+class FlowMeterSensor(BaseSensor):
     quantity="Flow Rate"
     unit="m3/s"
 
