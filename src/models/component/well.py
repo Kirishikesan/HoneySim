@@ -2,7 +2,7 @@ from models.component.baseComponent import BaseComponent
 
 class Well(BaseComponent):
     def __init__(self,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):
-        super.__init__()
+        super().__init__()
         self._height=height
         self._baseArea=baseArea
         self._waterLevel=waterLevel

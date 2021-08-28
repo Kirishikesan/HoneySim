@@ -1,4 +1,4 @@
-from baseActuator import BaseActuator
+from models.actuator.baseActuator import BaseActuator
 
 class Valve(BaseActuator):    
     def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0):

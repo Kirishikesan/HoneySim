@@ -1,4 +1,4 @@
-from baseSensor import BaseSensor
+from models.sensor.baseSensor import BaseSensor
 
 class GasPressureSensor(BaseSensor):
     quantity="Gas Pressure"

@@ -1,4 +1,4 @@
-from deviceList import DeviceList
+from models.device.deviceList import DeviceList
 
 class BaseDevice:
     allDevices=DeviceList()
