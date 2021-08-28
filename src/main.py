@@ -147,15 +147,19 @@ Device1.addSensor(WellPressureSensor)
 
 Device2.addSensor(Pump1FlowSensor)
 Device2.addSensor(Pump1PressureSensor)
+Device2.addActuator(Pump1)
 
 Device3.addSensor(Valve1FlowSensor)
 Device3.addSensor(Valve1PressureSensor)
+Device3.addActuator(Valve1)
 
 Device4.addSensor(Valve2FlowSensor)
 Device4.addSensor(Valve2PressureSensor)
+Device4.addActuator(Valve2)
 
 Device5.addSensor(Valve3FlowSensor)
 Device5.addSensor(Valve3PressureSensor)
+Device5.addActuator(Valve3)
 
 Device6.addSensor(Retention1WaterLevelSensor)
 Device6.addSensor(Retention1PressureSensor)
@@ -168,21 +172,26 @@ Device8.addSensor(Retention3PressureSensor)
 
 Device9.addSensor(Valve4FlowSensor)
 Device9.addSensor(Valve4PressureSensor)
+Device9.addActuator(Valve4)
 
 Device10.addSensor(Valve5FlowSensor)
 Device10.addSensor(Valve5PressureSensor)
+Device10.addActuator(Valve5)
 
 Device11.addSensor(Valve6FlowSensor)
 Device11.addSensor(Valve6PressureSensor)
+Device11.addActuator(Valve6)
 
 Device12.addSensor(StorageWaterLevelSensor)
 Device12.addSensor(StoragePressureSensor)
 
 Device13.addSensor(Pump2FlowSensor)
 Device13.addSensor(Pump2PressureSensor)
+Device13.addActuator(Pump2)
 
 Device14.addSensor(Valve7FlowSensor)
 Device14.addSensor(Valve7PressureSensor)
+Device14.addActuator(Valve7)
 
 Device15.addSensor(ReservoirWaterLevelSensor)
 Device15.addSensor(ReservoirPressureSensor)

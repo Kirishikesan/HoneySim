@@ -1,4 +1,4 @@
-from baseComponent import BaseComponent
+from models.component.baseComponent import BaseComponent
 
 class Well(BaseComponent):
     def __init__(self,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):

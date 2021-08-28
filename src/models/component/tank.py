@@ -1,4 +1,4 @@
-from baseComponent import BaseComponent
+from models.component.baseComponent import BaseComponent
 from threading import Thread
 import time 
 

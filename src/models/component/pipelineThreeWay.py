@@ -1,4 +1,4 @@
-from baseComponent import BaseComponent
+from models.component.baseComponent import BaseComponent
 
 class PipelineThreeWay(BaseComponent):
     def __init__(self,componentIn,length,diameter,flowIn=0,flowOut=0):
