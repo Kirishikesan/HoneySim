@@ -9,7 +9,6 @@ class HighRiseReservoir(BaseComponent):
         self._waterLevel=waterLevel
         self._flowIn=flowIn
         self._flowOut=flowOut
-        self.updateFlow()
 
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut

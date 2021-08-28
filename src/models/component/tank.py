@@ -14,7 +14,6 @@ class Tank(BaseComponent):
     def addComponentOut(self,componentOut):
         self._componentOut=componentOut
         self.attach(componentOut)
-        self.updateFlow()
 
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut
