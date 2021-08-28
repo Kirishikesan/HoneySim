@@ -6,7 +6,8 @@ from models.component.pipelineThreeWay import PipelineThreeWay
 from models.component.tank import Tank
 from models.component.highRiseReservoir import HighRiseReservoir
 from models.component.pipeline import Pipeline
-
+from models.actuator.pump import Pump
+from models.actuator.valve import Valve
 
 #Device Import script should be run to create relevant devices integrated with the modbus server
 
@@ -31,8 +32,18 @@ RetentionToStoragePipe2.addComponentOut(StorageTank)
 RetentionToStoragePipe3.addComponentOut(StorageTank)
 StoragePumpToValve=Pipeline(StorageTank,200,0.2,1,1)
 StorageTank.addComponentOut(StoragePumpToValve)
-HighRiseReservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
+Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
 StoragePumpToValve.addComponentOut(HighRiseReservoir)
+
+Pump1=Pump(RiverWell,PipeFromWell,8,2,0,0.5)
+Valve1=Valve(PipeThreeWay,RetentionTank1,8,2,0,1)
+Valve2=Valve(PipeThreeWay,RetentionTank2,8,2,0,1)
+Valve3=Valve(PipeThreeWay,RetentionTank3,8,2,0,1)
+Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,8,2,0,1)
+Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,8,2,0,1)
+Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,8,2,0,1)
+Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,0.5)
+Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,1)
 
 
 
