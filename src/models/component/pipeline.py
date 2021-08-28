@@ -1,15 +1,17 @@
 from baseComponent import BaseComponent
 
 class Pipeline(BaseComponent):
-    def __init__(self,componentIn,componentOut,length,diameter,flowIn=0,flowOut=0):
+    def __init__(self,componentIn,length,diameter,flowIn=0,flowOut=0):
         super.__init__()
         self._componentIn=componentIn
-        self._componentOut=componentOut
         self._length=length
         self._diameter=diameter
         self._flowIn=flowIn
         self._flowOut=flowOut
         self._flow=0
+    
+    def addComponentOut(self,componentOut):
+        self._componentOut=componentOut
         self.attach(componentOut)
         self.updateFlow()
     

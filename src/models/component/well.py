@@ -1,15 +1,17 @@
 from baseComponent import BaseComponent
 
 class Well(BaseComponent):
-    def __init__(self,componentOut,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):
+    def __init__(self,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):
         super.__init__()
-        self._componentOut=componentOut
         self._height=height
         self._baseArea=baseArea
         self._waterLevel=waterLevel
         self._flowIn=flowIn
         self._flowOut=flowOut
         self._flow=0
+    
+    def addComponentOut(self,componentOut):
+        self._componentOut=componentOut
         self.attach(componentOut)
         self.updateFlow()
 

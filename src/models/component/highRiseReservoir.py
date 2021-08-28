@@ -1,6 +1,6 @@
 from baseComponent import BaseComponent
 
-class highRiseReservoir(BaseComponent):
+class HighRiseReservoir(BaseComponent):
     def __init__(self,componentIn,height,baseArea,flowIn = 0,flowOut = 0,waterLevel=0):
         super.__init__()
         self._componentIn=componentIn
