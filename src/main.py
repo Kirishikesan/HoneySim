@@ -142,9 +142,50 @@ Device13=BaseDevice(512,Device13Modbus)
 Device14=BaseDevice(513,Device14Modbus)
 Device15=BaseDevice(514,Device15Modbus)
 
+Device1.addSensor(WellWaterLevelSensor)
+Device1.addSensor(WellPressureSensor)
 
+Device2.addSensor(Pump1FlowSensor)
+Device2.addSensor(Pump1PressureSensor)
 
+Device3.addSensor(Valve1FlowSensor)
+Device3.addSensor(Valve1PressureSensor)
 
+Device4.addSensor(Valve2FlowSensor)
+Device4.addSensor(Valve2PressureSensor)
+
+Device5.addSensor(Valve3FlowSensor)
+Device5.addSensor(Valve3PressureSensor)
+
+Device6.addSensor(Retention1WaterLevelSensor)
+Device6.addSensor(Retention1PressureSensor)
+
+Device7.addSensor(Retention2WaterLevelSensor)
+Device7.addSensor(Retention2PressureSensor)
+
+Device8.addSensor(Retention3WaterLevelSensor)
+Device8.addSensor(Retention3PressureSensor)
+
+Device9.addSensor(Valve4FlowSensor)
+Device9.addSensor(Valve4PressureSensor)
+
+Device10.addSensor(Valve5FlowSensor)
+Device10.addSensor(Valve5PressureSensor)
+
+Device11.addSensor(Valve6FlowSensor)
+Device11.addSensor(Valve6PressureSensor)
+
+Device12.addSensor(StorageWaterLevelSensor)
+Device12.addSensor(StoragePressureSensor)
+
+Device13.addSensor(Pump2FlowSensor)
+Device13.addSensor(Pump2PressureSensor)
+
+Device14.addSensor(Valve7FlowSensor)
+Device14.addSensor(Valve7PressureSensor)
+
+Device15.addSensor(ReservoirWaterLevelSensor)
+Device15.addSensor(ReservoirPressureSensor)
 
 
 
