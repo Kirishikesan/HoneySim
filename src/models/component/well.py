@@ -15,11 +15,11 @@ class Well(BaseComponent):
 
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut
-        self._update_observers()
+        self._update_observers(flowOut)
     
     def updateFlowIn(self,flowIn):
         self._flowIn=flowIn
-        self._update_observers()
+        #self._update_observers()
 
     def getFlow(self):
         return self._flowOut

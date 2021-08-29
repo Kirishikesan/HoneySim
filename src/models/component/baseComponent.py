@@ -5,9 +5,9 @@ class BaseComponent:
     def attach(self,observer):
         self.observers.append(observer)
 
-    def _update_observers(self):
+    def _update_observers(self, flowIn):
         for observer in self.observers:
-            observer()
+            observer.updateFlowIn(flowIn)
     
     def __call__(self):
         pass

@@ -25,7 +25,7 @@ class Pipeline(BaseComponent):
     
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
-        self._update_observers()
+        self._update_observers(self._flow)
 
     def getFlow(self):
         return self._flow

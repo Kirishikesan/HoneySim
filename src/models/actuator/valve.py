@@ -8,7 +8,8 @@ class Valve(BaseActuator):
         self._minFlow=minFlow
         self._resolution=resolution
     
-    def setState(self): 
+    def setState(self, state):
+        self._state=state 
         flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution-1))
         self._componentIn.UpdateFlowOut(flow)
     
