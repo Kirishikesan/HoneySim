@@ -5,12 +5,16 @@ from models.component.pipeline import Pipeline
 from models.component.pipelineThreeWay import PipelineThreeWay
 from models.component.tank import Tank
 from models.component.highRiseReservoir import HighRiseReservoir
+from models.component.chlorineTank import ChlorineTank
 from models.component.pipeline import Pipeline
 from models.actuator.pump import Pump
 from models.actuator.valve import Valve
+from models.actuator.chlorinePump import ChlorinePump
 from models.sensor.flowMeterSensor import FlowMeterSensor
 from models.sensor.waterLevelSensor import WaterLevelSensor
 from models.sensor.hydroPressureSensor import HydroPressureSensor
+from models.sensor.gasPressureSensor import GasPressureSensor
+from models.sensor.gasConcentrationSensor import GasConcentrationSensor
 from models.device.baseDevice import BaseDevice
 
 #Device Import script should be run to create relevant devices integrated with the modbus server
@@ -63,6 +67,7 @@ StoragePumpToValve=Pipeline(StorageTank,200,0.2,1,1)
 StorageTank.addComponentOut(StoragePumpToValve)
 Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
 StoragePumpToValve.addComponentOut(Reservoir)
+ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
 Pump1=Pump(RiverWell,PipeFromWell,8,2,0,0.5)
 Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,2,0,1)
@@ -72,7 +77,12 @@ Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,1)
 Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,1)
 Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,1)
 Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,0.5)
+<<<<<<< HEAD
 Valve7=Valve(StoragePumpToValve,Reservoir,1,2,0,1)
+=======
+Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,1)
+ChlorineTankPump=ChlorinePump(ChlorineTank)
+>>>>>>> 4e26d571787d0c5dd0a6083e7077590af7ba6473
 
 WellWaterLevelSensor=WaterLevelSensor(RiverWell)
 WellPressureSensor=HydroPressureSensor(RiverWell)
@@ -119,6 +129,9 @@ Valve7PressureSensor=HydroPressureSensor(Reservoir)
 ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
 ReservoirPressureSensor=HydroPressureSensor(Reservoir)
 
+ChlorinePressureSensor=GasPressureSensor(ChlorineInjectTank)
+ChlorinePressureSensor=GasConcentrationSensor(ChlorineInjectTank)
+
 
 Device1Modbus=ModbusServer("",1500)
 Device1Modbus.run()
@@ -150,6 +163,8 @@ Device14Modbus=ModbusServer("",1513)
 Device14Modbus.run()
 Device15Modbus=ModbusServer("",1514)
 Device15Modbus.run()
+Device16Modbus=ModbusServer("",1515)
+Device16Modbus.run()
 
 Device1=BaseDevice(1500,Device1Modbus)
 Device2=BaseDevice(1501,Device2Modbus)
@@ -166,6 +181,7 @@ Device12=BaseDevice(1511,Device12Modbus)
 Device13=BaseDevice(1512,Device13Modbus)
 Device14=BaseDevice(1513,Device14Modbus)
 Device15=BaseDevice(1514,Device15Modbus)
+Device16=BaseDevice(1515,Device16Modbus)
 
 Device1.addSensor(WellWaterLevelSensor)
 Device1.addSensor(WellPressureSensor)
@@ -220,6 +236,10 @@ Device14.addActuator(Valve7)
 
 Device15.addSensor(ReservoirWaterLevelSensor)
 Device15.addSensor(ReservoirPressureSensor)
+
+Device16.addSensor(ChlorinePressureSensor)
+Device16.addSensor(ChlorinePressureSensor)
+Device16.addActuator(ChlorineTankPump)
 
 
 
