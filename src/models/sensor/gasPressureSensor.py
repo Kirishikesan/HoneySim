@@ -5,4 +5,4 @@ class GasPressureSensor(BaseSensor):
     unit="psi"
 
     def getValue(self):
-        return tuple(self._component.getGasPressure(),self.unit)
+        return tuple(self._component.getPressure(),self.unit)
