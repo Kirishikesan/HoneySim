@@ -69,20 +69,16 @@ Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
-Pump1=Pump(RiverWell,PipeFromWell,8,2,0,0.5)
+Pump1=Pump(RiverWell,PipeFromWell,8,2,0,1)
 Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,2,0,1)
 Valve2=Valve(PipeToRetentionTank2,RetentionTank2,1,2,0,1)
 Valve3=Valve(PipeToRetentionTank3,RetentionTank3,1,2,0,1)
 Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,1)
 Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,1)
 Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,1)
-Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,0.5)
-<<<<<<< HEAD
-Valve7=Valve(StoragePumpToValve,Reservoir,1,2,0,1)
-=======
+Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,1)
-ChlorineTankPump=ChlorinePump(ChlorineTank)
->>>>>>> 4e26d571787d0c5dd0a6083e7077590af7ba6473
+ChlorineTankPump=ChlorinePump(ChlorineTank,4,1,0,2)
 
 WellWaterLevelSensor=WaterLevelSensor(RiverWell)
 WellPressureSensor=HydroPressureSensor(RiverWell)

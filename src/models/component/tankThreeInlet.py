@@ -26,8 +26,8 @@ class TankThreeInlet(BaseComponent):
         self._update_observers(self._flowOut)
     
     def updateFlowIn(self,flowIn):
-        stack=inspect.stack()
-        print (stack[1][0])
+        #stack=inspect.stack()
+        #print (stack[1][0])
         self._flowIn=flowIn
         #self._update_observers()
 
