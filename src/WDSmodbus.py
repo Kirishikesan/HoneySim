@@ -3,11 +3,11 @@
 #---------------------------------------------------------------------------# 
 # import the modbus libraries we need
 #---------------------------------------------------------------------------# 
-from pymodbus.server.sync import StartTcpServer
-from pymodbus.device import ModbusDeviceIdentification
-from pymodbus.datastore import ModbusSequentialDataBlock
-from pymodbus.datastore import ModbusSlaveContext, ModbusServerContext
-from pymodbus.transaction import ModbusRtuFramer, ModbusAsciiFramer
+from pymodbusModified.server.sync import StartTcpServer
+from pymodbusModified.device import ModbusDeviceIdentification
+from pymodbusModified.datastore import ModbusSequentialDataBlock
+from pymodbusModified.datastore import ModbusSlaveContext, ModbusServerContext
+from pymodbusModified.transaction import ModbusRtuFramer, ModbusAsciiFramer
 from threading import Thread 
 
 class ModbusServer:

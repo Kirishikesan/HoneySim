@@ -2,13 +2,14 @@ from models.device.deviceList import DeviceList
 
 class BaseDevice:
     allDevices=DeviceList()
-    def __init__(self,id,modbusServer):
+    def __init__(self,name,id,modbusServer):
         self._id=id
+        self._name=name
         self._sensors=list()
         self._actuators=list()
         self._modbusServer=modbusServer
         BaseDevice.allDevices.append(self)
-        print("Device successfully added with id {}".format(id))
+        print("Device successfully added with id {} : {}".format(id,name))
         # if(DeviceList.searchById(id)==None):
         #     self._id=id
         #     self._sensors=list()
