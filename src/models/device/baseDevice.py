@@ -21,6 +21,9 @@ class BaseDevice:
         #     print("Device failed to be added with id {}".format(id))
         #     raise Exception("ID exists")
 
+    def getId(self):
+        return self._id
+
     def addSensor(self,sensor):
         self._sensors.append(sensor)
 
@@ -30,3 +33,6 @@ class BaseDevice:
     def handle(self,connection,message):
         print("handling message {}".format(message))
         connection.close()    
+
+    def updateFromRegisters(self):
+        print("Device {} is updated by the broker".format(self.getId()))

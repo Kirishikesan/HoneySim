@@ -9,16 +9,17 @@ import socket
 import ssl
 import traceback
 
-from pymodbus.constants import Defaults
-from pymodbus.utilities import hexlify_packets
-from pymodbus.factory import ServerDecoder
-from pymodbus.datastore import ModbusServerContext
-from pymodbus.device import ModbusControlBlock
-from pymodbus.device import ModbusDeviceIdentification
-from pymodbus.transaction import *
-from pymodbus.exceptions import NotImplementedException, NoSuchSlaveException
-from pymodbus.pdu import ModbusExceptions as merror
-from pymodbus.compat import socketserver, byte2int
+from pymodbusModified.constants import Defaults
+from pymodbusModified.utilities import hexlify_packets
+from pymodbusModified.factory import ServerDecoder
+from pymodbusModified.datastore import ModbusServerContext
+from pymodbusModified.device import ModbusControlBlock
+from pymodbusModified.device import ModbusDeviceIdentification
+from pymodbusModified.transaction import *
+from pymodbusModified.exceptions import NotImplementedException, NoSuchSlaveException
+from pymodbusModified.pdu import ModbusExceptions as merror
+from pymodbusModified.compat import socketserver, byte2int
+from broker import Broker
 
 # --------------------------------------------------------------------------- #
 # Logging
@@ -331,6 +332,7 @@ class ModbusTcpServer(socketserver.ThreadingTCPServer):
                                                 Defaults.IgnoreMissingSlaves)
         self.broadcast_enable = kwargs.pop('broadcast_enable',
                                            Defaults.broadcast_enable)
+        self.broker=Broker()
 
         if isinstance(identity, ModbusDeviceIdentification):
             self.control.Identity.update(identity)
@@ -345,6 +347,8 @@ class ModbusTcpServer(socketserver.ThreadingTCPServer):
         :param request: The request to handle
         :param client: The address of the client
         """
+        print("Started thread to serve client at " + str(request.getsockname()))
+        self.broker.notifier(request.getsockname())
         _logger.debug("Started thread to serve client at " + str(client))
         socketserver.ThreadingTCPServer.process_request(self, request, client)
 

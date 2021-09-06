@@ -1,6 +1,6 @@
 from pyModbusTCP.client import ModbusClient
 
-for i in range(1500,1516):
+for i in range(1500,1505):
 
     try:
         c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
