@@ -1,18 +1,14 @@
 #!/usr/bin/env python
-
-#---------------------------------------------------------------------------# 
-# import the modbus libraries we need
-#---------------------------------------------------------------------------# 
 from pymodbusModified.server.sync import StartTcpServer
 from pymodbusModified.device import ModbusDeviceIdentification
 from pymodbusModified.datastore import ModbusSequentialDataBlock
 from pymodbusModified.datastore import ModbusSlaveContext, ModbusServerContext
-from pymodbusModified.transaction import ModbusRtuFramer, ModbusAsciiFramer
+from pymodbus.version import version
 from threading import Thread 
 
 class ModbusServer:
 
-    def __init__(self,_ip,_port):
+    def __init__(self,_ip,_port,_vendorName,_ProductCode,_VendorUrl,_ProductName,_ModelName):
         self._ip = _ip
         self._port = _port
         store = ModbusSlaveContext(
@@ -22,8 +18,17 @@ class ModbusServer:
             ir = ModbusSequentialDataBlock(0, [17]*100))
         self.context = ModbusServerContext(slaves=store, single=True)
 
+        # initialize the server information
+        self.identity = ModbusDeviceIdentification()
+        self.identity.VendorName = _vendorName
+        self.identity.ProductCode = _ProductCode
+        self.identity.VendorUrl = _VendorUrl
+        self.identity.ProductName = _ProductName
+        self.identity.ModelName = _ModelName
+        self.identity.MajorMinorRevision = version.short()
+
     def _run(self):
-        StartTcpServer(self.context, identity="", address=(self._ip, int(self._port)))
+        StartTcpServer(self.context, identity=self.identity, address=(self._ip, int(self._port)))
         
     def run(self):
         Thread(target=self._run).start()
