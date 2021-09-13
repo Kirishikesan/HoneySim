@@ -5,4 +5,4 @@ class WaterLevelSensor(BaseSensor):
     unit="m"
 
     def getValue(self):
-        return tuple(self._component.getWaterLevel(),self.unit)
+        return self._component.getWaterLevel(),self.unit
