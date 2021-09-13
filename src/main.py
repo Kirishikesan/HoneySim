@@ -144,7 +144,7 @@ Device6Modbus=ModbusServer("",1505,"SensorsONE","DCL 531","https://www.sensorson
 Device6Modbus.run()
 Device7Modbus=ModbusServer("",1506,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device7Modbus.run()
-Device8Modbus=ModbusServer("",1507,,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
+Device8Modbus=ModbusServer("",1507,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device8Modbus.run()
 Device9Modbus=ModbusServer("",1508,"","","","","")
 Device9Modbus.run()
