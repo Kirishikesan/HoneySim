@@ -5,4 +5,4 @@ class FlowMeterSensor(BaseSensor):
     unit="m3/s"
 
     def getValue(self):
-        return tuple(self._component.getFlowRate(),self.unit)
+        return self._component.getFlow(),self.unit

@@ -8,6 +8,7 @@ class Well(BaseComponent):
         self._waterLevel=waterLevel
         self._flowIn=flowIn
         self._flowOut=flowOut
+        self._chlorineConcentration=0
     
     def addComponentOut(self,componentOut):
         self._componentOut=componentOut
@@ -15,9 +16,10 @@ class Well(BaseComponent):
 
     def updateFlowOut(self,flowOut):
         self._flowOut=flowOut
-        self._update_observers(flowOut)
+        print ("Well flowout chaged, flow: "+str(self._flowOut))
+        self._update_observers(self._flowOut,self._chlorineConcentration, id(self))
     
-    def updateFlowIn(self,flowIn):
+    def updateFlowIn(self,flowIn, chlorineIn, id):
         self._flowIn=flowIn
         #self._update_observers()
 

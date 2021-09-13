@@ -17,14 +17,18 @@ from models.sensor.gasPressureSensor import GasPressureSensor
 from models.sensor.gasConcentrationSensor import GasConcentrationSensor
 from models.device.baseDevice import BaseDevice
 
+import time
+
 #Device Import script should be run to create relevant devices integrated with the modbus server
 
 RiverWell=Well(20,30,1,1)
 PipeFromWell=Pipeline(RiverWell,100,0.20,1,1)
+PipeFromWell.updateFlowOut(1000)
+
 RiverWell.addComponentOut(PipeFromWell)
-PipeToRetentionTank1=Pipeline(PipeFromWell,100,0.20,1,1)
-PipeToRetentionTank2=Pipeline(PipeFromWell,100,0.20,1,1)
-PipeToRetentionTank3=Pipeline(PipeFromWell,100,0.20,1,1)
+PipeToRetentionTank1=Pipeline(PipeFromWell,2000,0.20,0,0)
+PipeToRetentionTank2=Pipeline(PipeFromWell,2000,0.20,0,0)
+PipeToRetentionTank3=Pipeline(PipeFromWell,2000,0.20,0,0)
 #PipeThreeWay=PipelineThreeWay(PipeFromWell,50,0.15,1,1)
 #PipeFromWell.addComponentOut(PipeThreeWay)
 
@@ -36,9 +40,9 @@ PipeFromWell.addComponentOut(PipeToRetentionTank3)
 #RetentionTank2=Tank(PipeThreeWay,5,10,1/3,1/3)
 #RetentionTank3=Tank(PipeThreeWay,5,10,1/3,1/3)
 
-RetentionTank1=Tank(PipeToRetentionTank1,5,10,1/3,1/3)
-RetentionTank2=Tank(PipeToRetentionTank2,5,10,1/3,1/3)
-RetentionTank3=Tank(PipeToRetentionTank3,5,10,1/3,1/3)
+RetentionTank1=Tank(PipeToRetentionTank1,5,10,0,0)
+RetentionTank2=Tank(PipeToRetentionTank2,5,10,0,0)
+RetentionTank3=Tank(PipeToRetentionTank3,5,10,0,0)
 
 #PipeThreeWay.addComponentOut(RetentionTank1,RetentionTank2,RetentionTank3)
 
@@ -46,39 +50,41 @@ PipeToRetentionTank1.addComponentOut(RetentionTank1)
 PipeToRetentionTank2.addComponentOut(RetentionTank2)
 PipeToRetentionTank3.addComponentOut(RetentionTank3)
 
-RetentionToStoragePipe1=Pipeline(RetentionTank1,50,0.15,1/3,1/3)
+RetentionToStoragePipe1=Pipeline(RetentionTank1,50,0.15,0,0)
 RetentionTank1.addComponentOut(RetentionToStoragePipe1)
-RetentionToStoragePipe1.updateFlowOut(10)
+RetentionToStoragePipe1.updateFlowOut(100)
 
-RetentionToStoragePipe2=Pipeline(RetentionTank2,50,0.15,1/3,1/3)
+RetentionToStoragePipe2=Pipeline(RetentionTank2,50,0.15,0,0)
 RetentionTank2.addComponentOut(RetentionToStoragePipe2)
-RetentionToStoragePipe1.updateFlowOut(20)
+RetentionToStoragePipe1.updateFlowOut(100)
 
-RetentionToStoragePipe3=Pipeline(RetentionTank3,50,0.15,1/3,1/3)
+RetentionToStoragePipe3=Pipeline(RetentionTank3,50,0.15,0,0)
 RetentionTank3.addComponentOut(RetentionToStoragePipe3)
-RetentionToStoragePipe1.updateFlowOut(30)
+RetentionToStoragePipe1.updateFlowOut(100)
 
-StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,10,15,1,1)
+StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,10,15,0,0)
 
 RetentionToStoragePipe1.addComponentOut(StorageTank)
 RetentionToStoragePipe2.addComponentOut(StorageTank)
 RetentionToStoragePipe3.addComponentOut(StorageTank)
 StoragePumpToValve=Pipeline(StorageTank,200,0.2,1,1)
 StorageTank.addComponentOut(StoragePumpToValve)
-Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,1,1)
+Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
-Pump1=Pump(RiverWell,PipeFromWell,8,2,0,1)
-Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,2,0,1)
-Valve2=Valve(PipeToRetentionTank2,RetentionTank2,1,2,0,1)
-Valve3=Valve(PipeToRetentionTank3,RetentionTank3,1,2,0,1)
-Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,1)
-Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,1)
-Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,1)
-Pump2=Pump(StorageTank,StoragePumpToValve,8,2,0,1)
-Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,1)
-ChlorineTankPump=ChlorinePump(ChlorineTank,4,1,0,2)
+Pump1=Pump(RiverWell,PipeFromWell,8,8,0,1)
+Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,5,0,0)
+Valve2=Valve(PipeToRetentionTank2,RetentionTank2,1,2,0,0)
+Valve3=Valve(PipeToRetentionTank3,RetentionTank3,1,2,0,0)
+Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,0)
+Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,0)
+Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,0)
+Pump2=Pump(StorageTank,StoragePumpToValve,8,4,0,1)
+Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,0)
+ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
+ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
+ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
 
 WellWaterLevelSensor=WaterLevelSensor(RiverWell)
 WellPressureSensor=HydroPressureSensor(RiverWell)
@@ -163,6 +169,13 @@ Device15Modbus.run()
 Device16Modbus=ModbusServer("",1515,"","","","","")
 Device16Modbus.run()
 
+#Device17Modbus=ModbusServer("",1516)
+#Device17Modbus.run()
+#Device18Modbus=ModbusServer("",1517)
+#Device18Modbus.run()
+#Device19Modbus=ModbusServer("",1518)
+#Device19Modbus.run()
+
 Device1=BaseDevice("WellDevice",1500,Device1Modbus)
 Device2=BaseDevice("Pump1Device",1501,Device2Modbus)
 Device3=BaseDevice("Valve1Device",1502,Device3Modbus)
@@ -179,6 +192,10 @@ Device13=BaseDevice("Pump2Device",1512,Device13Modbus)
 Device14=BaseDevice("Valve7Device",1513,Device14Modbus)
 Device15=BaseDevice("HighRiseReservoirDevice",1514,Device15Modbus)
 Device16=BaseDevice("ChlorineTankDevice",1515,Device16Modbus)
+
+#Device17=BaseDevice("ChlorinePump1Device",1516,Device17Modbus)
+#Device18=BaseDevice("ChlorinePump2Device",1517,Device18Modbus)
+#Device19=BaseDevice("ChlorinePump3Device",1518,Device19Modbus)
 
 Device1.addSensor(WellWaterLevelSensor)
 Device1.addSensor(WellPressureSensor)
@@ -236,9 +253,70 @@ Device15.addSensor(ReservoirPressureSensor)
 
 Device16.addSensor(ChlorinePressureSensor)
 Device16.addSensor(ChlorineConcentrationSensor)
-Device16.addActuator(ChlorineTankPump)
+Device16.addActuator(ChlorineTankPump1)
+Device16.addActuator(ChlorineTankPump2)
+Device16.addActuator(ChlorineTankPump3)
 
 
+
+
+#Test ICS Run.............................................................
+
+
+
+Device2._actuators[0].setState(128)
+#print(Device2._sensors[0].getValue())
+
+#print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1.getFlow()))
+#Pump1.setState(128)
+Valve1.setState(1)
+
+#print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
+Valve4.setState(1)
+
+#print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
+#print("valve 4 :"+str(Valve4._state))
+#print("valve 5 :"+str(Valve5._state))
+#print("valve 7 :"+str(Valve7._state))
+
+Device16._actuators[0].setState(8)
+
+Device13._actuators[0].setState(64)
+
+
+time.sleep(5)
+
+
+for num in range(1,100):
+    print (PipeToRetentionTank1._chlorineConcentrationHistory)
+
+    print ("Cl concentration at pipeToRetention1 start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
+    print ("Cl concentration at piptToRetention1 End:"+str(PipeToRetentionTank1.getChlorineConcentration(PipeToRetentionTank1._length))+"\n")
+
+    print ("Retention Tank 1, flowin:"+str(RetentionTank1._flowIn))
+    print ("Retention Tank 1, flowout:"+str(RetentionTank1._flowOut))
+    print ("Retention Tank 1, waterlevel:"+ str(RetentionTank1._waterLevel))
+    print ("Retention Tank 1, Cl flow in:"+str(RetentionTank1._chlorineFlowComponentIn))
+    print ("Retention Tank 1, Cl concentration:"+str(RetentionTank1._chlorineConcentration)+"\n")
+
+    print (RetentionToStoragePipe1._chlorineConcentrationHistory)
+    print ("Cl concentration at RetentionToStoragePipe1 start:"+str(RetentionToStoragePipe1._chlorineConcentrationAtStart))
+    print ("Cl concentration at RetentionToStoragePipe1 End:"+str(RetentionToStoragePipe1.getChlorineConcentration(RetentionToStoragePipe1._length))+"\n")    
+
+    print ("Storage Tank, flowin:"+str(StorageTank._flowIn))
+    print ("Storage Tank, flowout:"+str(StorageTank._flowOut))
+    print ("Storage Tank, waterlevel:"+ str(StorageTank._waterLevel)+"\n")
+
+    print("Storage tank to resevior flow:"+str(StoragePumpToValve._flow)+"\n")
+
+    print ("Reservior, flowin:"+str(Reservoir._flowIn))
+    print ("Reservior, flowout:"+str(Reservoir._flowOut))
+    print ("Reservior, waterlevel:"+ str(Reservoir._waterLevel)+"\n \n")
+
+    if(num==6):
+        Device16._actuators[0].setState(12)
+    
+    time.sleep(5)
 
 
 

@@ -7,6 +7,7 @@ class ChlorineTank(BaseComponent):
         self._baseArea=baseArea
         self._concentration=concentration
         self._volume=volume
+        self._flowOut=0
         self._pressure=self.calculatePressure()
 
     def calculatePressure(self):
@@ -16,7 +17,7 @@ class ChlorineTank(BaseComponent):
         return self._pressure
 
     def getConcentration(self):
-        return self._concentration    
+        return self._concentration  
         
     def __call__(self):
         return None
