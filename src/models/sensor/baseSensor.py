@@ -3,8 +3,8 @@ import abc
 class BaseSensor(metaclass=abc.ABCMeta):
     def __init__(self,component):
         self._component=component
+        self._component.attachSensor(self)
 
-    
     @abc.abstractmethod
     def getValue(self):
         pass

@@ -11,7 +11,14 @@ class FlowMeterSensor(BaseSensor):
         self._state=state
         self._register=register
         self._address=address
-        self._flow=self.setFlow()
+        self._value=self.setValue()    
+    
 
     def getValue(self):
-        return self._component.getFlow(),self.unit
+        return self._component.getFlow()
+
+    def setValue(self):
+        self._value=self.getValue()
+
+    def update(self):
+        self.setValue()
