@@ -4,6 +4,7 @@ class BaseSensor(metaclass=abc.ABCMeta):
     def __init__(self,component):
         self._component=component
 
+    
     @abc.abstractmethod
     def getValue(self):
         pass

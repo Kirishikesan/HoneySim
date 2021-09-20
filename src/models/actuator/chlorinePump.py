@@ -1,7 +1,7 @@
 from models.actuator.baseActuator import BaseActuator
 
 class ChlorinePump(BaseActuator):
-    def __init__(self,componentIn,componenetOut, resolution,maxFlow,minFlow,state=0):
+    def __init__(self,componentIn,componenetOut, resolution,maxFlow,minFlow,state=0,register=1,address=50):
         super().__init__(componentIn, componenetOut)
         self._state=state
         self._maxFlow=maxFlow
@@ -16,3 +16,7 @@ class ChlorinePump(BaseActuator):
     def setState(self,state):
         self._state=state
         self.setFlow()
+    
+    def update(self,modbusServer):
+        reg=list(modbusServer.get(self._register,self._address,1))
+        self.setState(reg[0])

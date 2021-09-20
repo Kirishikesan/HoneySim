@@ -36,3 +36,5 @@ class BaseDevice:
 
     def updateFromRegisters(self):
         print("Device {} is updated by the broker".format(self.getId()))
+        for actuator in self._actuators:
+            actuator.update(self._modbusServer)
