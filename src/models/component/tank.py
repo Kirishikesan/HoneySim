@@ -27,7 +27,7 @@ class Tank(BaseComponent):
         self.attach(componentOut)
 
     def updateFlowOut(self,flowOut):
-        self._flowOut=flowOut
+        self._flowOut=min(flowOut,self._componentOut.getFlow())
         self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
     
     def updateFlowIn(self,flowIn, chlorineIn, id):
@@ -49,10 +49,9 @@ class Tank(BaseComponent):
     def updateWaterLevel(self):
         #print ("Tank water level changing thread started")
         while(True):
-            
-                
             waterLevelTemp=self._waterLevel
-            self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*self._refreshingTime
+            # print(self._flowIn,self._flowOut,self._waterLevel)
+            self._waterLevel=self._waterLevel + ((self._flowIn-self._flowOut)*self._refreshingTime)/(self._baseArea)
                 
             if(self._waterLevel<0):
                 self._waterLevel=0

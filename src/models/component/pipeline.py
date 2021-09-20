@@ -49,7 +49,7 @@ class Pipeline(BaseComponent):
         
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
-        #print ("pipeline flow changed, flow:" + str(self._flow))
+        # print ("pipeline flow changed, flow:" + str(self._flow))
         if(self._flow>0):
             self._chlorineFlowComponentIn=self._tempCl
 

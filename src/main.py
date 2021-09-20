@@ -73,15 +73,15 @@ Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
-Pump1=Pump(RiverWell,PipeFromWell,16,8,0,1)
-Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,5,0,0)
-Valve2=Valve(PipeToRetentionTank2,RetentionTank2,1,2,0,0)
-Valve3=Valve(PipeToRetentionTank3,RetentionTank3,1,2,0,0)
-Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,0)
-Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,0)
-Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,0)
-Pump2=Pump(StorageTank,StoragePumpToValve,16,4,0,1)
-Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,0)
+Pump1=Pump(RiverWell,PipeFromWell,16,80,0,1)
+Valve1=Valve(PipeToRetentionTank1,RetentionTank1,16,50,0,0)
+Valve2=Valve(PipeToRetentionTank2,RetentionTank2,16,20,0,0)
+Valve3=Valve(PipeToRetentionTank3,RetentionTank3,16,20,0,0)
+Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,16,20,0,0)
+Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,16,20,0,0)
+Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,16,20,0,0)
+Pump2=Pump(StorageTank,StoragePumpToValve,16,40,0,1)
+Valve7=Valve(StoragePumpToValve,Reservoir,16,20,0,0)
 ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
 ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
 ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
@@ -258,9 +258,25 @@ Device16.addActuator(ChlorineTankPump2)
 Device16.addActuator(ChlorineTankPump3)
 
 
+##Test ICS Run Demo
+print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
+Pump1.setState(10000)
+print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
+Valve1.setState(0)
+print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
+while(True):
+    print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
+    time.sleep(2)
+# Valve1.setState(10000)
+# for i in range(500):
+#     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
+#     print ("Retention1, flowOut: "+ str(RetentionTank1._flowOut))
+#     time.sleep(2)
+# print ("RetentiontoStoragePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
 
 
-# #Test ICS Run.............................................................
+
+##Test ICS Run.............................................................
 
 
 

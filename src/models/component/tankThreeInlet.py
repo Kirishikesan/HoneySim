@@ -29,7 +29,7 @@ class TankThreeInlet(BaseComponent):
         self.attach(componentOut)
 
     def updateFlowOut(self,flowOut):
-        self._flowOut=flowOut
+        self._flowOut=min(flowOut,self._componentOut.getFlow())
         self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
     
     def updateFlowIn(self,flowIn, chlorineIn,id):

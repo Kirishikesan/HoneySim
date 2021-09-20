@@ -15,8 +15,8 @@ class Well(BaseComponent):
         self.attach(componentOut)
 
     def updateFlowOut(self,flowOut):
-        self._flowOut=flowOut
-        print ("Well flowout chaged, flow: "+str(self._flowOut))
+        self._flowOut=min(flowOut,self._componentOut.getFlow())
+        print ("Well flowout changed, flow: "+str(self._flowOut))
         self._update_observers(self._flowOut,self._chlorineConcentration, id(self))
     
     def updateFlowIn(self,flowIn, chlorineIn, id):

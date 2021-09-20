@@ -7,6 +7,8 @@ class Valve(BaseActuator):
         self._maxFlow=maxFlow
         self._minFlow=minFlow
         self._resolution=resolution
+        self._register=register
+        self._address=address
     
     def setState(self, state):
         self._state=state 

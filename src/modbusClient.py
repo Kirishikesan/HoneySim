@@ -1,11 +1,12 @@
 from pyModbusTCP.client import ModbusClient
 
-for i in range(1501,1502):
+for i in range(1502,1503):
 
     try:
         c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
     except ValueError:
         print ("Error with host or port params")
+
 
     if c.open():
 
@@ -87,15 +88,15 @@ for i in range(1501,1502):
         c.write_single_coil(0, True)
         c.write_single_register(0, 250)
 
-        reg_list_1 = c.read_coils(0, 11)
-        reg_list_2 = c.read_discrete_inputs(0, 11)
-        reg_list_3 = c.read_holding_registers(0, 11)
-        reg_list_4 = c.read_input_registers(0, 11)
+        # reg_list_1 = c.read_coils(0, 11)
+        # reg_list_2 = c.read_discrete_inputs(0, 11)
+        # reg_list_3 = c.read_holding_registers(0, 11)
+        # reg_list_4 = c.read_input_registers(0, 11)
         
-        print("coils values             :-" + str(reg_list_1))
-        print("discrete_inputs values   :-" + str(reg_list_2))
-        print("holding_registers values :-" + str(reg_list_3))
-        print("input_registers values   :-" + str(reg_list_4))
+        # print("coils values             :-" + str(reg_list_1))
+        # print("discrete_inputs values   :-" + str(reg_list_2))
+        # print("holding_registers values :-" + str(reg_list_3))
+        # print("input_registers values   :-" + str(reg_list_4))
         c.close()
         print("Test success at address  : {}".format(i))
     else:

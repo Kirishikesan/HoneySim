@@ -19,7 +19,6 @@ class HighRiseReservoir(BaseComponent):
         Thread(target=self.updateWaterLevel).start()
 
     def updateFlowOut(self,flowOut):
-        self._flowOut=flowOut
         self._update_observers(self._flowOut)
     
     def updateFlowIn(self,flowIn, chlorineIn, id):
