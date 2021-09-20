@@ -73,14 +73,14 @@ Reservoir=HighRiseReservoir(StoragePumpToValve,30,20,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
-Pump1=Pump(RiverWell,PipeFromWell,8,8,0,1)
+Pump1=Pump(RiverWell,PipeFromWell,16,8,0,1)
 Valve1=Valve(PipeToRetentionTank1,RetentionTank1,1,5,0,0)
 Valve2=Valve(PipeToRetentionTank2,RetentionTank2,1,2,0,0)
 Valve3=Valve(PipeToRetentionTank3,RetentionTank3,1,2,0,0)
 Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,1,2,0,0)
 Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,1,2,0,0)
 Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,1,2,0,0)
-Pump2=Pump(StorageTank,StoragePumpToValve,8,4,0,1)
+Pump2=Pump(StorageTank,StoragePumpToValve,16,4,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,8,2,0,0)
 ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
 ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
@@ -140,11 +140,11 @@ Device1Modbus=ModbusServer("",1500,"SensorsONE","DCL 531","https://www.sensorson
 Device1Modbus.run()
 Device2Modbus=ModbusServer("",1501,"dp-pumps","DPVCI","https://www.dp-pumps.com/","DPVCI","15/17(19) B")
 Device2Modbus.run()
-Device3Modbus=ModbusServer("",1502,"","","","","")
+Device3Modbus=ModbusServer("",1502,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device3Modbus.run()
-Device4Modbus=ModbusServer("",1503,"","","","","")
+Device4Modbus=ModbusServer("",1503,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device4Modbus.run()
-Device5Modbus=ModbusServer("",1504,"","","","","")
+Device5Modbus=ModbusServer("",1504,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device5Modbus.run()
 Device6Modbus=ModbusServer("",1505,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device6Modbus.run()
@@ -152,21 +152,21 @@ Device7Modbus=ModbusServer("",1506,"SensorsONE","DCL 531","https://www.sensorson
 Device7Modbus.run()
 Device8Modbus=ModbusServer("",1507,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device8Modbus.run()
-Device9Modbus=ModbusServer("",1508,"","","","","")
+Device9Modbus=ModbusServer("",1508,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device9Modbus.run()
-Device10Modbus=ModbusServer("",1509,"","","","","")
+Device10Modbus=ModbusServer("",1509,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device10Modbus.run()
-Device11Modbus=ModbusServer("",1510,"","","","","")
+Device11Modbus=ModbusServer("",1510,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device11Modbus.run()
-Device12Modbus=ModbusServer("",1511,"","","","","")
+Device12Modbus=ModbusServer("",1511,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device12Modbus.run()
 Device13Modbus=ModbusServer("",1512,"dp-pumps","DPVCI","https://www.dp-pumps.com/","DPVCI","15/17(19) B")
 Device13Modbus.run()
-Device14Modbus=ModbusServer("",1513,"","","","","")
+Device14Modbus=ModbusServer("",1513,"Belimo","GR24A-MOD-7","https://www.belimo.com/","Rotary Actuator-40nm AC-DC-24V","Industrial Butterfly Valve-40nm")
 Device14Modbus.run()
 Device15Modbus=ModbusServer("",1514,"SensorsONE","DCL 531","https://www.sensorsone.com/","Modbus RTU RS 485 Submersible Stainless Steel Liquid Level Sensor","DCL 531")
 Device15Modbus.run()
-Device16Modbus=ModbusServer("",1515,"","","","","")
+Device16Modbus=ModbusServer("",1515,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
 Device16Modbus.run()
 
 #Device17Modbus=ModbusServer("",1516)
@@ -260,70 +260,70 @@ Device16.addActuator(ChlorineTankPump3)
 
 
 
-#Test ICS Run.............................................................
+# #Test ICS Run.............................................................
 
 
 
-Device2._actuators[0].setState(128)
-#print(Device2._sensors[0].getValue())
+# Device2._actuators[0].setState(128)
+# #print(Device2._sensors[0].getValue())
 
-#print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1.getFlow()))
-#Pump1.setState(128)
-Valve1.setState(1)
+# #print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1.getFlow()))
+# #Pump1.setState(128)
+# Valve1.setState(1)
 
-#print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
-Valve4.setState(1)
+# #print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
+# Valve4.setState(1)
 
-#print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
-#print("valve 4 :"+str(Valve4._state))
-#print("valve 5 :"+str(Valve5._state))
-#print("valve 7 :"+str(Valve7._state))
+# #print ("RetentiontoStorapePipe1 flow:" +str(RetentionToStoragePipe1._flowIn)+" "+str(RetentionToStoragePipe1._flowOut)+" "+str(RetentionToStoragePipe1._flow))
+# #print("valve 4 :"+str(Valve4._state))
+# #print("valve 5 :"+str(Valve5._state))
+# #print("valve 7 :"+str(Valve7._state))
 
-Device16._actuators[0].setState(8)
+# Device16._actuators[0].setState(8)
 
-Device13._actuators[0].setState(64)
-
-
-time.sleep(5)
+# Device13._actuators[0].setState(64)
 
 
-for num in range(1,100):
-    print (PipeToRetentionTank1._chlorineConcentrationHistory)
+# time.sleep(5)
 
-    print ("Cl concentration at pipeToRetention1 start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
-    print ("Cl concentration at piptToRetention1 End:"+str(PipeToRetentionTank1.getChlorineConcentration(PipeToRetentionTank1._length))+"\n")
 
-    print ("Retention Tank 1, flowin:"+str(RetentionTank1._flowIn))
-    print ("Retention Tank 1, flowout:"+str(RetentionTank1._flowOut))
-    print ("Retention Tank 1, waterlevel:"+ str(RetentionTank1._waterLevel))
-    print ("Retention Tank 1, Cl flow in:"+str(RetentionTank1._chlorineFlowComponentIn))
-    print ("Retention Tank 1, Cl concentration:"+str(RetentionTank1._chlorineConcentration)+"\n")
+# for num in range(1,100):
+#     print (PipeToRetentionTank1._chlorineConcentrationHistory)
 
-    print (RetentionToStoragePipe1._chlorineConcentrationHistory)
-    print ("Cl concentration at RetentionToStoragePipe1 start:"+str(RetentionToStoragePipe1._chlorineConcentrationAtStart))
-    print ("Cl concentration at RetentionToStoragePipe1 End:"+str(RetentionToStoragePipe1.getChlorineConcentration(RetentionToStoragePipe1._length))+"\n")    
+#     print ("Cl concentration at pipeToRetention1 start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
+#     print ("Cl concentration at piptToRetention1 End:"+str(PipeToRetentionTank1.getChlorineConcentration(PipeToRetentionTank1._length))+"\n")
 
-    print ("Storage Tank, flowin:"+str(StorageTank._flowIn))
-    print ("Storage Tank, flowout:"+str(StorageTank._flowOut))
-    print ("Storage Tank, waterlevel:"+ str(StorageTank._waterLevel)+"\n")
+#     print ("Retention Tank 1, flowin:"+str(RetentionTank1._flowIn))
+#     print ("Retention Tank 1, flowout:"+str(RetentionTank1._flowOut))
+#     print ("Retention Tank 1, waterlevel:"+ str(RetentionTank1._waterLevel))
+#     print ("Retention Tank 1, Cl flow in:"+str(RetentionTank1._chlorineFlowComponentIn))
+#     print ("Retention Tank 1, Cl concentration:"+str(RetentionTank1._chlorineConcentration)+"\n")
 
-    print("Storage tank to resevior flow:"+str(StoragePumpToValve._flow)+"\n")
+#     print (RetentionToStoragePipe1._chlorineConcentrationHistory)
+#     print ("Cl concentration at RetentionToStoragePipe1 start:"+str(RetentionToStoragePipe1._chlorineConcentrationAtStart))
+#     print ("Cl concentration at RetentionToStoragePipe1 End:"+str(RetentionToStoragePipe1.getChlorineConcentration(RetentionToStoragePipe1._length))+"\n")    
 
-    print ("Reservior, flowin:"+str(Reservoir._flowIn))
-    print ("Reservior, flowout:"+str(Reservoir._flowOut))
-    print ("Reservior, waterlevel:"+ str(Reservoir._waterLevel)+"\n \n")
+#     print ("Storage Tank, flowin:"+str(StorageTank._flowIn))
+#     print ("Storage Tank, flowout:"+str(StorageTank._flowOut))
+#     print ("Storage Tank, waterlevel:"+ str(StorageTank._waterLevel)+"\n")
 
-    if(num==6):
-        Device16._actuators[0].setState(12)
+#     print("Storage tank to resevior flow:"+str(StoragePumpToValve._flow)+"\n")
+
+#     print ("Reservior, flowin:"+str(Reservoir._flowIn))
+#     print ("Reservior, flowout:"+str(Reservoir._flowOut))
+#     print ("Reservior, waterlevel:"+ str(Reservoir._waterLevel)+"\n \n")
+
+#     if(num==6):
+#         Device16._actuators[0].setState(12)
     
-    time.sleep(5)
+#     time.sleep(5)
 
 
 
-# wdsModbus=ModbusServer("",502)
-# wdsModbus.run()
-# wdsModbus.update(3,0,[54,88])
-# print(wdsModbus.get(3,0,5))
+# # wdsModbus=ModbusServer("",502)
+# # wdsModbus.run()
+# # wdsModbus.update(3,0,[54,88])
+# # print(wdsModbus.get(3,0,5))
 
 
 

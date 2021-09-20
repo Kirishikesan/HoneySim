@@ -45,7 +45,13 @@ class HighRiseReservoir(BaseComponent):
             #print ("Chlorine concentration in tank :" + str(self._chlorineConcentration))
             #print ("Water level in tank: "+str(self._waterLevel))
             time.sleep(self._refreshingTime)
-        
+
+    def getWaterLevel(self):
+        return self._waterLevel
+    
+    def getHydroPressure(self):
+        return self._height*10000
+
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
 

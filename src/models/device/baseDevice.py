@@ -9,7 +9,7 @@ class BaseDevice:
         self._actuators=list()
         self._modbusServer=modbusServer
         BaseDevice.allDevices.append(self)
-        #print("Device successfully added with id {} : {}".format(id,name))
+        print("Device successfully added with id {} : {}".format(id,name))
         # if(DeviceList.searchById(id)==None):
         #     self._id=id
         #     self._sensors=list()

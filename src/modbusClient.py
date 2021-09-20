@@ -1,6 +1,6 @@
 from pyModbusTCP.client import ModbusClient
 
-for i in range(1500,1505):
+for i in range(1501,1502):
 
     try:
         c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
@@ -82,10 +82,10 @@ for i in range(1500,1505):
         #error = c.last_error_txt()
         #execption = c.last_except_txt(verbose=True)
 
-        #c.write_multiple_coils(0, [True,True,True])
-        #c.write_multiple_registers(0, [100,101,102])
-        #c.write_single_coil(0, True)
-        #c.write_single_register(0, 250)
+        c.write_multiple_coils(0, [True,True,True])
+        c.write_multiple_registers(0, [100,101,102])
+        c.write_single_coil(0, True)
+        c.write_single_register(0, 250)
 
         reg_list_1 = c.read_coils(0, 11)
         reg_list_2 = c.read_discrete_inputs(0, 11)

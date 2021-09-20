@@ -42,6 +42,9 @@ class Tank(BaseComponent):
 
     def getWaterLevel(self):
         return self._waterLevel
+    
+    def getHydroPressure(self):
+        return self._height*10000
 
     def updateWaterLevel(self):
         #print ("Tank water level changing thread started")

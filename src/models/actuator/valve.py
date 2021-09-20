@@ -1,7 +1,7 @@
 from models.actuator.baseActuator import BaseActuator
 
 class Valve(BaseActuator):    
-    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=1,address=50):
+    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=3,address=0):
         super().__init__(componentIn,componentOut)
         self._state=state
         self._maxFlow=maxFlow
@@ -11,7 +11,7 @@ class Valve(BaseActuator):
     def setState(self, state):
         self._state=state 
         flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution-1))
-        #print ("Valve state changed, flow:" + str(flow))
+        print ("Valve state changed, flow:" + str(flow))
         self._componentIn.updateFlowOut(flow)
     
     def update(self,modbusServer):

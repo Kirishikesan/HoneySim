@@ -99,7 +99,7 @@ class Pipeline(BaseComponent):
             timeToFlow= x/timeToFlow
 
             #print("Time to flow:"+str(timeToFlow))
-            chlorineHistoryIndex=int(timeToFlow/self._refreshingTime)+1
+            chlorineHistoryIndex=(int(timeToFlow/self._refreshingTime)+1)%50
             #print ("Cl history index:"+str(chlorineHistoryIndex)+"\n")
 
             chlorineAtX=self._chlorineConcentrationHistory[chlorineHistoryIndex]*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
@@ -109,6 +109,9 @@ class Pipeline(BaseComponent):
         elif (self._flow==0):
             #should find a equation to model with the dispersion
             return 0
+
+    def getHydroPressure(self):
+        return 350000
 
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())

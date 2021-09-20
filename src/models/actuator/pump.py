@@ -1,7 +1,7 @@
 from models.actuator.baseActuator import BaseActuator
 
 class Pump(BaseActuator):
-    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=1,address=50):
+    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=3,address=8210):
         super().__init__(componentIn,componentOut)
         self._state=state
         self._maxFlow=maxFlow
@@ -19,6 +19,7 @@ class Pump(BaseActuator):
 
     def update(self,modbusServer):
         reg=list(modbusServer.get(self._register,self._address,1))
+        print("Actuator modified through modbus {}".format(self))
         self.setState(reg[0])
 
     

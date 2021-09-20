@@ -25,6 +25,12 @@ class Well(BaseComponent):
 
     def getFlow(self):
         return self._flowOut
+    
+    def getWaterLevel(self):
+        return self._waterLevel
+    
+    def getHydroPressure(self):
+        return self._height*10000
         
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
