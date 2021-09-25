@@ -20,6 +20,8 @@ class HighRiseReservoir(BaseComponent):
 
     def updateFlowOut(self,flowOut):
         self._update_observers(self._flowOut)
+        self.updateSensors()
+
     
     def updateFlowIn(self,flowIn, chlorineIn, id):
         self._flowIn=flowIn
@@ -41,6 +43,8 @@ class HighRiseReservoir(BaseComponent):
                 self._chlorineConcentration= (chlorineVolIn + chlorineVol)/self._waterLevel
             except ZeroDivisionError:
                 self._chlorineConcentration=0
+
+            self.updateSensors()
             #print ("Chlorine concentration in tank :" + str(self._chlorineConcentration))
             #print ("Water level in tank: "+str(self._waterLevel))
             time.sleep(self._refreshingTime)

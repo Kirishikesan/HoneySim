@@ -11,7 +11,11 @@ class HydroPressureSensor(BaseSensor):
         self._state=state
         self._register=register
         self._address=address
-        self._value=self.setValue()        
+        self._value=self.setValue()    
+
+    def update(self):
+        value=self.getValue()
+        self._device.updateToRegisters(self._register,self._address,value)    
 
     def getValue(self):
         return self._component.getHydroPressure()

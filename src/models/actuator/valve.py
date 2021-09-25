@@ -13,7 +13,7 @@ class Valve(BaseActuator):
     def setState(self, state):
         self._state=state 
         flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution-1))
-        print ("Valve state changed, flow:" + str(flow))
+        # print ("Valve state changed")
         self._componentIn.updateFlowOut(flow)
     
     def update(self,modbusServer):

@@ -30,6 +30,7 @@ class TankThreeInlet(BaseComponent):
 
     def updateFlowOut(self,flowOut):
         self._flowOut=min(flowOut,self._componentOut.getFlow())
+        self.updateSensors()
         self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
     
     def updateFlowIn(self,flowIn, chlorineIn,id):
@@ -68,7 +69,7 @@ class TankThreeInlet(BaseComponent):
                 self._chlorineConcentration= (chlorineVolIn + chlorineVol)/self._waterLevel
             except ZeroDivisionError:
                 self._chlorineConcentration=0
-
+            self.updateSensors()
             self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
             time.sleep(self._refreshingTime)
 

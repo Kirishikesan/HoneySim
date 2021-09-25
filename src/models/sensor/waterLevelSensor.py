@@ -13,6 +13,10 @@ class WaterLevelSensor(BaseSensor):
         self._address=address
         self._value=self.setValue()        
 
+    def update(self):
+        value=self.getValue()
+        self._device.updateToRegisters(self._register,self._address,value)
+
     def getValue(self):
         return self._component.getWaterLevel()
 

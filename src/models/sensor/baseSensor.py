@@ -8,6 +8,12 @@ class BaseSensor(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def getValue(self):
         pass
+    
+    def addDevice(self,device):
+        self._device=device
+
+    def update(self):
+        pass
 
     @abc.abstractproperty
     def quantity(self):

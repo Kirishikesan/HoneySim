@@ -26,6 +26,7 @@ class BaseDevice:
 
     def addSensor(self,sensor):
         self._sensors.append(sensor)
+        sensor.addDevice(self)
 
     def addActuator(self,actuator):
         self._actuators.append(actuator)
@@ -38,3 +39,6 @@ class BaseDevice:
         print("Device {} is updated by the broker".format(self.getId()))
         for actuator in self._actuators:
             actuator.update(self._modbusServer)
+    
+    def updateToRegisters(self,register,address,value):
+        self._modbusServer.update(register,address,value)

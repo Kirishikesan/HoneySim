@@ -14,7 +14,7 @@ class Pump(BaseActuator):
         self._state=state
         
         self._flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution))
-        print ("Pump state changed, flow:" + str(self._flow))
+        # print ("Pump state changed")
         self._componentIn.updateFlowOut(self._flow)
 
     def update(self,modbusServer):

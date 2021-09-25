@@ -28,6 +28,7 @@ class Tank(BaseComponent):
 
     def updateFlowOut(self,flowOut):
         self._flowOut=min(flowOut,self._componentOut.getFlow())
+        self.updateSensors()
         self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
     
     def updateFlowIn(self,flowIn, chlorineIn, id):
@@ -65,7 +66,7 @@ class Tank(BaseComponent):
                 #print ("Zero division error, water level is 0")
             #print ("Chlorine concentration in tank :" + str(self._chlorineConcentration))
             #print ("Water level in tank: "+str(self._waterLevel))
-
+            self.updateSensors()
             self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
 
             time.sleep(self._refreshingTime)

@@ -54,6 +54,7 @@ class Pipeline(BaseComponent):
             self._chlorineFlowComponentIn=self._tempCl
 
         clEnd=self.getChlorineConcentration(self._length)
+        self.updateSensors()
         self._update_observers(self._flow, clEnd, id(self))
 
     def getFlow(self):
@@ -82,6 +83,7 @@ class Pipeline(BaseComponent):
             #print("Pipeline:"+str(inspect.stack()[0].frame))
             clEnd=self.getChlorineConcentration(self._length)
             #print(self.observers)
+            self.updateSensors()
             self._update_observers(self._flow, clEnd, id(self))
 
             

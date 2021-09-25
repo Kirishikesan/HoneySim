@@ -13,7 +13,7 @@ class BaseComponent:
         for observer in self.observers:
             observer.updateFlowIn(flowIn, chlorineIn, id)
     
-    def _update_sensors(self):
+    def updateSensors(self):
         for sensor in self.sensors:
             sensor.update()
     
