@@ -4,7 +4,7 @@ class HydroPressureSensor(BaseSensor):
     quantity="Hydro Pressure"
     unit="psi"
 
-    def __init__(self,component,resolution=16,state=0,register=4,address=50):
+    def __init__(self,component,resolution=16,state=0,register=4,address=53):
         super().__init__(component)
         self._state=state
         self._resolution=resolution
@@ -14,9 +14,10 @@ class HydroPressureSensor(BaseSensor):
         self._value=self.setValue()    
 
     def updateRegisters(self):
-        value=self.getValue()
-        self._device.updateToRegisters(self._register,self._address,value)    
-
+        value=[]
+        value.append(int(self.getValue()))
+        self._device.updateToRegisters(self._register,self._address,value)
+ 
     def getValue(self):
         return self._component.getHydroPressure()
 

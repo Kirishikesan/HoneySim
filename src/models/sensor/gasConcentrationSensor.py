@@ -4,7 +4,7 @@ class GasConcentrationSensor(BaseSensor):
     quantity="Gas Concentration"
     unit="mol/m3"
 
-    def __init__(self,component,resolution=16,state=0,register=4,address=50):
+    def __init__(self,component,resolution=16,state=0,register=4,address=51):
         super().__init__(component)
         self._state=state
         self._resolution=resolution
@@ -14,7 +14,8 @@ class GasConcentrationSensor(BaseSensor):
         self._value=self.setValue()        
 
     def updateRegisters(self):
-        value=self.getValue()
+        value=[]
+        value.append(int(self.getValue()))
         self._device.updateToRegisters(self._register,self._address,value)
 
     def getValue(self):

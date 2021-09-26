@@ -14,7 +14,8 @@ class FlowMeterSensor(BaseSensor):
         self._value=self.setValue()  
 
     def updateRegisters(self):
-        value=self.getValue()
+        value=[]
+        value.append(int(self.getValue()))
         self._device.updateToRegisters(self._register,self._address,value)
 
     def getValue(self):
