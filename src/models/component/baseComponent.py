@@ -15,7 +15,7 @@ class BaseComponent:
     
     def updateSensors(self):
         for sensor in self.sensors:
-            sensor.update()
+            sensor.updateRegisters()
     
     def __call__(self):
         pass

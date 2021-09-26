@@ -4,7 +4,7 @@ class FlowMeterSensor(BaseSensor):
     quantity="Flow Rate"
     unit="m3/s"
 
-    def __init__(self,component,resolution=16,state=0,register=1,address=50):
+    def __init__(self,component,resolution=16,state=0,register=4,address=50):
         super().__init__(component)
         self._state=state
         self._resolution=resolution
@@ -13,7 +13,7 @@ class FlowMeterSensor(BaseSensor):
         self._address=address
         self._value=self.setValue()  
 
-    def update(self):
+    def updateRegisters(self):
         value=self.getValue()
         self._device.updateToRegisters(self._register,self._address,value)
 

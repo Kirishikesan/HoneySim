@@ -12,7 +12,8 @@ class BaseSensor(metaclass=abc.ABCMeta):
     def addDevice(self,device):
         self._device=device
 
-    def update(self):
+    @abc.abstractmethod
+    def updateRegisters(self):
         pass
 
     @abc.abstractproperty
