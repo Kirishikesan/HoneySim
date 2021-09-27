@@ -45,6 +45,7 @@ class Pipeline(BaseComponent):
         self.updateFlow()
 
     def updateChlorineFromTankIn(self, chlorineFromTank):
+        self.updateSensors()
         self._chlorineFlowClTank = chlorineFromTank
         
     def updateFlow(self):

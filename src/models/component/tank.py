@@ -48,7 +48,7 @@ class Tank(BaseComponent):
         return self._waterLevel
     
     def getHydroPressure(self):
-        return self._height*10000
+        return self._waterLevel*10000
 
     def updateWaterLevel(self):
         #print ("Tank water level changing thread started")
@@ -59,6 +59,8 @@ class Tank(BaseComponent):
                 
             if(self._waterLevel<0):
                 self._waterLevel=0
+            elif(self._waterLevel>99):
+                self._waterLevel=self._height
                 
             try:
                 chlorineVolIn = self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime
