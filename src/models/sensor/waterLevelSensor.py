@@ -15,7 +15,7 @@ class WaterLevelSensor(BaseSensor):
 
     def updateRegisters(self):
         value=[]
-        value.append(int(self.getValue()))
+        value.append(int((self.getValue()*100)/self._component.getHeight()))
         self._device.updateToRegisters(self._register,self._address,value)
 
     def getValue(self):

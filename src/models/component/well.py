@@ -10,6 +10,9 @@ class Well(BaseComponent):
         self._flowOut=flowOut
         self._chlorineConcentration=0
     
+    def getHeight(self):
+        return self._height
+
     def addComponentOut(self,componentOut):
         self._componentOut=componentOut
         self.attach(componentOut)

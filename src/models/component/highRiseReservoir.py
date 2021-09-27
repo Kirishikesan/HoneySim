@@ -17,6 +17,9 @@ class HighRiseReservoir(BaseComponent):
 
         self._refreshingTime=5
         Thread(target=self.updateWaterLevel).start()
+    
+    def getHeight(self):
+        return self._height
 
     def updateFlowOut(self,flowOut):
         self._update_observers(self._flowOut)

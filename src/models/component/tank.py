@@ -21,6 +21,9 @@ class Tank(BaseComponent):
 
         self._refreshingTime=5
         Thread(target=self.updateWaterLevel).start()
+    
+    def getHeight(self):
+        return self._height
 
     def addComponentOut(self,componentOut):
         self._componentOut=componentOut
