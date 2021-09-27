@@ -18,7 +18,6 @@ class Tank(BaseComponent):
         self._chlorineFlowComponentIn=0
         self._chlorineConcentration=0
         self._waterLevel=0
-
         self._refreshingTime=5
         Thread(target=self.updateWaterLevel).start()
     
