@@ -2,7 +2,7 @@ from models.sensor.baseSensor import BaseSensor
 
 class HydroPressureSensor(BaseSensor):
     quantity="Hydro Pressure"
-    unit="psi"
+    unit="kPa"
 
     def __init__(self,component,resolution=16,state=0,register=4,address=53):
         super().__init__(component)
