@@ -131,8 +131,10 @@ Valve7PressureSensor=HydroPressureSensor(Reservoir)
 ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
 ReservoirPressureSensor=HydroPressureSensor(Reservoir)
 
-ChlorinePressureSensor=GasPressureSensor(ChlorineInjectTank)
-ChlorineConcentrationSensor=GasConcentrationSensor(ChlorineInjectTank)
+
+ChlorineConcentrationSensor1=GasConcentrationSensor(ChlorineInjectTank)
+ChlorineConcentrationSensor2=GasConcentrationSensor(ChlorineInjectTank)
+ChlorineConcentrationSensor3=GasConcentrationSensor(ChlorineInjectTank)
 
 
 #_vendorName,_ProductCode,_VendorUrl,_ProductName,_ModelName
@@ -195,9 +197,9 @@ Device12=BaseDevice("StorageTankDevice",1511,Device12Modbus)
 Device13=BaseDevice("Pump2Device",1512,Device13Modbus)
 Device14=BaseDevice("Valve7Device",1513,Device14Modbus)
 Device15=BaseDevice("HighRiseReservoirDevice",1514,Device15Modbus)
-Device16=BaseDevice("PipeToRetentionTank1",1515,Device16Modbus)
-Device17=BaseDevice("PipeToRetentionTank2",1516,Device16Modbus)
-Device18=BaseDevice("PipeToRetentionTank3",1517,Device16Modbus)
+Device16=BaseDevice("ChlorinePump1Device",1515,Device16Modbus)
+Device17=BaseDevice("ChlorinePump2Device",1516,Device16Modbus)
+Device18=BaseDevice("ChlorinePump3Device",1517,Device16Modbus)
 
 
 #Device17=BaseDevice("ChlorinePump1Device",1516,Device17Modbus)
@@ -259,19 +261,17 @@ Device15.addSensor(ReservoirWaterLevelSensor)
 Device15.addSensor(ReservoirPressureSensor)
 
 # Device16.addSensor(ChlorinePressureSensor1)
-# Device16.addSensor(ChlorineConcentrationSensor1)
+Device16.addSensor(ChlorineConcentrationSensor1)
 
 # Device17.addSensor(ChlorinePressureSensor2)
-# Device17.addSensor(ChlorineConcentrationSensor2)
+Device17.addSensor(ChlorineConcentrationSensor2)
 
 # Device18.addSensor(ChlorinePressureSensor3)
-# Device18.addSensor(ChlorineConcentrationSensor3)
+Device18.addSensor(ChlorineConcentrationSensor3)
 
-# Device16.addActuator(ChlorineTankPump1)
-
-# Device17.addActuator(ChlorineTankPump2)
-
-# Device18.addActuator(ChlorineTankPump3)
+Device16.addActuator(ChlorineTankPump1)
+Device17.addActuator(ChlorineTankPump2)
+Device18.addActuator(ChlorineTankPump3)
 
 
 
