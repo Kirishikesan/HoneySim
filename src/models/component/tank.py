@@ -19,7 +19,6 @@ class Tank(BaseComponent):
         self._chlorineConcentration=0
         self._waterLevel=0
         self._refreshingTime=5
-        Thread(target=self.updateWaterLevel).start()
     
     def getHeight(self):
         return self._height
@@ -27,6 +26,7 @@ class Tank(BaseComponent):
     def addComponentOut(self,componentOut):
         self._componentOut=componentOut
         self.attach(componentOut)
+        Thread(target=self.updateWaterLevel).start()
 
     def updateFlowOut(self,flowOut):
         self._flowOut=min(flowOut,self._componentOut.getFlow())
@@ -47,7 +47,7 @@ class Tank(BaseComponent):
         return self._waterLevel
     
     def getHydroPressure(self):
-        return self._waterLevel*10000
+        return self._waterLevel*10
 
     def updateWaterLevel(self):
         #print ("Tank water level changing thread started")
@@ -70,6 +70,8 @@ class Tank(BaseComponent):
                 #print ("Zero division error, water level is 0")
             #print ("Chlorine concentration in tank :" + str(self._chlorineConcentration))
             #print ("Water level in tank: "+str(self._waterLevel))
+            self._flowOut=min(self._componentOut._flowOut, self._waterLevel*self._baseArea)
+
             self.updateSensors()
             self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
 
