@@ -12,7 +12,6 @@ class Valve(BaseActuator):
     
     def setState(self, state):
         self._state=state 
-
         print ("Valve state changed "+str(state))
         flow=(self._maxFlow)*(self._state/((2**self._resolution)-1))
         self._componentIn.updateFlowOut(flow)

@@ -22,6 +22,7 @@ class HighRiseReservoir(BaseComponent):
         return self._height
 
     def updateFlowOut(self,flowOut):
+        self._flowOut=flowOut
         self._update_observers(self._flowOut)
         self.updateSensors()
 
