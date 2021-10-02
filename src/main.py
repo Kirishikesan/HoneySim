@@ -16,14 +16,14 @@ from models.sensor.hydroPressureSensor import HydroPressureSensor
 from models.sensor.gasPressureSensor import GasPressureSensor
 from models.sensor.gasConcentrationSensor import GasConcentrationSensor
 from models.device.baseDevice import BaseDevice
+from pyModbusTCP.client import ModbusClient
 
 import time
 
 #Device Import script should be run to create relevant devices integrated with the modbus server
 
 RiverWell=Well(20,30,1,1)
-PipeFromWell=Pipeline(RiverWell,100,0.20,1,1)
-PipeFromWell.updateFlowOut(1000)
+PipeFromWell=Pipeline(RiverWell,100,0.20,1,1000)
 
 RiverWell.addComponentOut(PipeFromWell)
 PipeToRetentionTank1=Pipeline(PipeFromWell,2000,0.20,0,0)
@@ -52,15 +52,12 @@ PipeToRetentionTank3.addComponentOut(RetentionTank3)
 
 RetentionToStoragePipe1=Pipeline(RetentionTank1,50,0.15,0,0)
 RetentionTank1.addComponentOut(RetentionToStoragePipe1)
-RetentionToStoragePipe1.updateFlowOut(100)
 
 RetentionToStoragePipe2=Pipeline(RetentionTank2,50,0.15,0,0)
 RetentionTank2.addComponentOut(RetentionToStoragePipe2)
-RetentionToStoragePipe1.updateFlowOut(100)
 
 RetentionToStoragePipe3=Pipeline(RetentionTank3,50,0.15,0,0)
 RetentionTank3.addComponentOut(RetentionToStoragePipe3)
-RetentionToStoragePipe1.updateFlowOut(100)
 
 StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,100,150,0,0)
 
@@ -85,6 +82,8 @@ Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
 ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
 ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
 ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
+
+
 
 WellWaterLevelSensor=WaterLevelSensor(RiverWell)
 WellPressureSensor=HydroPressureSensor(RiverWell)
@@ -274,7 +273,6 @@ Device15.addSensor(ReservoirPressureSensor)
 # Device18.addActuator(ChlorineTankPump3)
 
 
-
 ##Test ICS Run Demo
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 Pump1.setState(10000)
@@ -287,17 +285,96 @@ print ("Well, flow: "+ str(RiverWell.getFlow()))
 print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 while(True):
-    # print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
+    if((RetentionTank1.getWaterLevel()*100)/RetentionTank1.getHeight()>=85):
+        for j in range(2):
+            i=1502
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {}".format(i))
+            else:
+                c.close()
+                print("Valve at  : {}".format(i))
+    if((RetentionTank2.getWaterLevel()*100)/RetentionTank2.getHeight()>=85):
+        for j in range(2):
+            i=1503
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Valve at  : {} closed failed".format(i))
+    if((RetentionTank3.getWaterLevel()*100)/RetentionTank3.getHeight()>=85):
+        for j in range(2):
+            i=1504
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Valve at  : {} closed failed".format(i))
+    if((StorageTank.getWaterLevel()*100)/StorageTank.getHeight()>=85):
+        for j in range(2):
+            for i in range(1508,1510):
+                try:
+                    c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+                except ValueError:
+                    print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Valve at  : {} closed failed".format(i))
+    if((Reservoir.getWaterLevel()*100)/Reservoir.getHeight()>=85):
+        for j in range(2):
+            i=1513
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Valve at  : {} closed failed".format(i))
+
+    # print ("PipeToRetentionTank1, flow: "+ str(PipeToRetentionTank1.getFlow()))
+    print ("Retention1, WaterLevel: "+ str(int((RetentionTank1.getWaterLevel()*100)/RetentionTank1.getHeight())))
     # print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
     # print ("RetentionToStoragePipe1, flow: "+ str(RetentionToStoragePipe1.getFlow()))
+    # print ("Valve4, state: "+ str(Valve4._state))
+    # print ("Pump1, Flow: "+ str(Pump1._flow))
+    # print ("Pump1, state: "+ str(Pump1._state))
+    # print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
+    # print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
+    # print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1.getFlow()))
+
     # print ("StorageTank, WaterLevel: "+ str(StorageTank.getWaterLevel()))
     # print ("StorageTank, Pressure: "+ str(StorageTank.getHydroPressure()))
     # print ("StorageTank, FlowOut: "+ str(StorageTank._flowOut))
     # print ("StoragePumpToValve, FlowIn: "+ str(StoragePumpToValve._flowIn))
     # print ("StoragePumpToValve, FlowOut: "+ str(StoragePumpToValve._flowOut))
     # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
-    print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
-    print ("Pump2, Flow: "+ str(Pump2._flow))
+    # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
+    # print ("Pump2, Flow: "+ str(Pump2._flow))
 
     time.sleep(2)
 # Valve1.setState(10000)

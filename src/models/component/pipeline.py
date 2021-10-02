@@ -34,6 +34,7 @@ class Pipeline(BaseComponent):
         self.updateFlow()
     
     def updateFlowOut(self,flowOut):
+        print("Flowout updated to "+str(flowOut))
         self._flowOut=flowOut
         #print ("Pipeline flowout changed, flowout:"+str(self._flowOut))
         self.updateFlow()
