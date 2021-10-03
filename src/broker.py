@@ -18,6 +18,7 @@ class Broker:
         id=int(message[:2])
         device=self._allDevices.searchById(id)
         if(device!=None):
-            device.handle(connection,message)
+            print("Message received")
+            # device.handle(connection,message)
         else:
             raise Exception("Device not found")

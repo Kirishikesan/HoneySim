@@ -1,4 +1,6 @@
 from models.device.deviceList import DeviceList
+from threading import Thread,Lock
+import time 
 
 class BaseDevice:
     allDevices=DeviceList()
@@ -10,6 +12,7 @@ class BaseDevice:
         self._modbusServer=modbusServer
         BaseDevice.allDevices.append(self)
         print("Device successfully added with id {} : {}".format(id,name))
+        Thread(target=self.updateFromRegisters).start() 
         # if(DeviceList.searchById(id)==None):
         #     self._id=id
         #     self._sensors=list()
@@ -33,12 +36,21 @@ class BaseDevice:
 
     def handle(self,connection,message):
         print("handling message {}".format(message))
+        print("Device {} is updated by the broker".format(self.getId()))
+        self.updateFromRegisters()
         connection.close()    
 
     def updateFromRegisters(self):
-        print("Device {} is updated by the broker".format(self.getId()))
-        for actuator in self._actuators:
-            actuator.update(self._modbusServer)
-    
+        # for actuator in self._actuators:
+        #     actuator.update(self._modbusServer)
+        if(len(self._actuators)>0):
+            while(True):
+                for actuator in self._actuators:
+                    actuator.update(self._modbusServer)
+                time.sleep(3)
+        else:
+            for actuator in self._actuators:
+                actuator.update(self._modbusServer)
+
     def updateToRegisters(self,register,address,value):
         self._modbusServer.update(register,address,value)
