@@ -40,9 +40,9 @@ PipeFromWell.addComponentOut(PipeToRetentionTank3)
 #RetentionTank2=Tank(PipeThreeWay,5,10,1/3,1/3)
 #RetentionTank3=Tank(PipeThreeWay,5,10,1/3,1/3)
 
-RetentionTank1=Tank(PipeToRetentionTank1,30,10,0,0)
-RetentionTank2=Tank(PipeToRetentionTank2,30,10,0,0)
-RetentionTank3=Tank(PipeToRetentionTank3,30,10,0,0)
+RetentionTank1=Tank(PipeToRetentionTank1,30,50,0,0)
+RetentionTank2=Tank(PipeToRetentionTank2,30,50,0,0)
+RetentionTank3=Tank(PipeToRetentionTank3,30,50,0,0)
 
 #PipeThreeWay.addComponentOut(RetentionTank1,RetentionTank2,RetentionTank3)
 
