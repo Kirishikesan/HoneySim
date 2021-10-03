@@ -142,6 +142,10 @@ ChlorineConcentrationSensor1=GasConcentrationSensor(PipeToRetentionTank1)
 ChlorineConcentrationSensor2=GasConcentrationSensor(PipeToRetentionTank2)
 ChlorineConcentrationSensor3=GasConcentrationSensor(PipeToRetentionTank3)
 
+RetentionTank1ChlorineSensor=GasConcentrationSensor(RetentionTank1)
+RetentionTank2ChlorineSensor=GasConcentrationSensor(RetentionTank2)
+RetentionTank3ChlorineSensor=GasConcentrationSensor(RetentionTank3)
+
 Pump3FlowSensor=FlowMeterSensor(RetentionToStoragePipe1)
 Pump3PressureSensor=HydroPressureSensor(RetentionToStoragePipe1)
 
@@ -205,6 +209,14 @@ Device25Modbus=ModbusServer("",1524,"dp-pumps","DPVCI","https://www.dp-pumps.com
 Device25Modbus.run()
 
 
+Device26Modbus=ModbusServer("",1525,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
+Device26Modbus.run()
+Device27Modbus=ModbusServer("",1526,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
+Device27Modbus.run()
+Device28Modbus=ModbusServer("",1527,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
+Device28Modbus.run()
+
+
 Device1=BaseDevice("WellDevice",1500,Device1Modbus)
 Device2=BaseDevice("Pump1Device",1501,Device2Modbus)
 Device3=BaseDevice("Valve1Device",1502,Device3Modbus)
@@ -228,6 +240,10 @@ Device18=BaseDevice("ChlorinePump3Device",1517,Device16Modbus)
 Device23=BaseDevice("Pump3",1522,Device23Modbus)
 Device24=BaseDevice("Pump4",1523,Device24Modbus)
 Device25=BaseDevice("Pump5",1524,Device25Modbus)
+
+Device26=BaseDevice("RetentionTank1ClSensor",1525,Device26Modbus)
+Device27=BaseDevice("RetentionTank2ClSensor",1526,Device27Modbus)
+Device28=BaseDevice("RetentionTank3ClSensor",1527,Device28Modbus)
 
 
 #Device17=BaseDevice("ChlorinePump1Device",1516,Device17Modbus)
@@ -315,6 +331,10 @@ Device24.addActuator(Pump4)
 Device25.addSensor(Pump5FlowSensor)
 Device25.addSensor(Pump5PressureSensor)
 Device25.addActuator(Pump5)
+
+Device26.addSensor(RetentionTank1ChlorineSensor)
+Device27.addSensor(RetentionTank2ChlorineSensor)
+Device28.addSensor(RetentionTank3ChlorineSensor)
 
 
 ##Test ICS Run Demo

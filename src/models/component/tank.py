@@ -76,6 +76,9 @@ class Tank(BaseComponent):
             self._update_observers(self._flowOut, self._chlorineConcentration, id(self))
 
             time.sleep(self._refreshingTime)
+
+    def getChlorineConcentration(self, x):
+        return self._chlorineConcentration
         
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
