@@ -7,6 +7,7 @@ class ChlorinePump(BaseActuator):
         self._maxFlow=maxFlow
         self._minFlow=minFlow
         self._resolution=resolution
+        self._register=register
         self._flow=self.setFlow()
     
     def setFlow(self): 
