@@ -47,7 +47,10 @@ class Pipeline(BaseComponent):
 
     def updateChlorineFromTankIn(self, chlorineFromTank):
         self.updateSensors()
-        self._chlorineFlowClTank = chlorineFromTank
+        if(self._flow>0):
+            self._chlorineFlowClTank = chlorineFromTank
+        else:
+            self._chlorineFlowClTank = 0
         
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
