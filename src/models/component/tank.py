@@ -59,7 +59,7 @@ class Tank(BaseComponent):
             if(self._waterLevel<0):
                 self._waterLevel=0
             elif(self._waterLevel>99):
-                self._waterLevel=self._height
+                self._waterLevel=self._height*0.9
                 
             try:
                 chlorineVolIn = self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime

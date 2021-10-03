@@ -50,42 +50,39 @@ PipeToRetentionTank1.addComponentOut(RetentionTank1)
 PipeToRetentionTank2.addComponentOut(RetentionTank2)
 PipeToRetentionTank3.addComponentOut(RetentionTank3)
 
-RetentionToStoragePipe1=Pipeline(RetentionTank1,50,1.5,0,0)
+RetentionToStoragePipe1=Pipeline(RetentionTank1,50,0.15,0,0)
 RetentionTank1.addComponentOut(RetentionToStoragePipe1)
 
-RetentionToStoragePipe2=Pipeline(RetentionTank2,50,1.5,0,0)
+RetentionToStoragePipe2=Pipeline(RetentionTank2,50,0.15,0,0)
 RetentionTank2.addComponentOut(RetentionToStoragePipe2)
 
-RetentionToStoragePipe3=Pipeline(RetentionTank3,50,1.5,0,0)
+RetentionToStoragePipe3=Pipeline(RetentionTank3,50,0.15,0,0)
 RetentionTank3.addComponentOut(RetentionToStoragePipe3)
 
-StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,20,5,0,0)
+StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,100,150,0,0)
 
 RetentionToStoragePipe1.addComponentOut(StorageTank)
 RetentionToStoragePipe2.addComponentOut(StorageTank)
 RetentionToStoragePipe3.addComponentOut(StorageTank)
-StoragePumpToValve=Pipeline(StorageTank,200,0.2,0,0)
+StoragePumpToValve=Pipeline(StorageTank,200,0.2,1,1)
 StorageTank.addComponentOut(StoragePumpToValve)
-Reservoir=HighRiseReservoir(StoragePumpToValve,200,300,0,0)
+Reservoir=HighRiseReservoir(StoragePumpToValve,100,150,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
+
 
 Pump1=Pump(RiverWell,PipeFromWell,16,20,0,1)
 Valve1=Valve(PipeToRetentionTank1,RetentionTank1,16,1,0,0)
 Valve2=Valve(PipeToRetentionTank2,RetentionTank2,16,1,0,0)
 Valve3=Valve(PipeToRetentionTank3,RetentionTank3,16,1,0,0)
-Valve4=Valve(RetentionToStoragePipe1,StorageTank,16,0.1,0,0)
-Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,0.1,0,0)
-Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,0.1,0,0)
+Valve4=Valve(RetentionTank1,RetentionToStoragePipe1,16,0.1,0,0)
+Valve5=Valve(RetentionTank2,RetentionToStoragePipe2,16,0.1,0,0)
+Valve6=Valve(RetentionTank3,RetentionToStoragePipe3,16,0.1,0,0)
 Pump2=Pump(StorageTank,StoragePumpToValve,16,20,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
 ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
 ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
 ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
-
-Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,20,0,1)
-Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,20,0,1)
-Pump5=Pump(RetentionTank3,RetentionToStoragePipe3,16,20,0,1)
 
 
 
@@ -97,15 +94,12 @@ Pump1PressureSensor=HydroPressureSensor(PipeFromWell)
 
 Valve1FlowSensor=FlowMeterSensor(PipeToRetentionTank1)
 Valve1PressureSensor=HydroPressureSensor(PipeToRetentionTank1)
-Valve1ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank1, 16,0,4,51,PipeToRetentionTank1._length)
 
 Valve2FlowSensor=FlowMeterSensor(PipeToRetentionTank2)
 Valve2PressureSensor=HydroPressureSensor(PipeToRetentionTank2)
-Valve2ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank2, 16,0,4,51,PipeToRetentionTank2._length)
 
 Valve3FlowSensor=FlowMeterSensor(PipeToRetentionTank3)
 Valve3PressureSensor=HydroPressureSensor(PipeToRetentionTank3)
-Valve3ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank3, 16,0,4,51,PipeToRetentionTank3._length)
 
 Retention1WaterLevelSensor=WaterLevelSensor(RetentionTank1)
 Retention1PressureSensor=HydroPressureSensor(RetentionTank1)
@@ -137,19 +131,8 @@ Valve7PressureSensor=HydroPressureSensor(Reservoir)
 ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
 ReservoirPressureSensor=HydroPressureSensor(Reservoir)
 
-
-ChlorineConcentrationSensor1=GasConcentrationSensor(PipeToRetentionTank1)
-ChlorineConcentrationSensor2=GasConcentrationSensor(PipeToRetentionTank2)
-ChlorineConcentrationSensor3=GasConcentrationSensor(PipeToRetentionTank3)
-
-Pump3FlowSensor=FlowMeterSensor(RetentionToStoragePipe1)
-Pump3PressureSensor=HydroPressureSensor(RetentionToStoragePipe1)
-
-Pump4FlowSensor=FlowMeterSensor(RetentionToStoragePipe2)
-Pump4PressureSensor=HydroPressureSensor(RetentionToStoragePipe2)
-
-Pump5FlowSensor=FlowMeterSensor(RetentionToStoragePipe3)
-Pump5PressureSensor=HydroPressureSensor(RetentionToStoragePipe3)
+ChlorinePressureSensor=GasPressureSensor(ChlorineInjectTank)
+ChlorineConcentrationSensor=GasConcentrationSensor(ChlorineInjectTank)
 
 
 #_vendorName,_ProductCode,_VendorUrl,_ProductName,_ModelName
@@ -197,14 +180,6 @@ Device18Modbus.run()
 #Device19Modbus=ModbusServer("",1518)
 #Device19Modbus.run()
 
-Device23Modbus=ModbusServer("",1522,"dp-pumps","DPVCI","https://www.dp-pumps.com/","DPVCI","15/17(19) B")
-Device23Modbus.run()
-Device24Modbus=ModbusServer("",1523,"dp-pumps","DPVCI","https://www.dp-pumps.com/","DPVCI","15/17(19) B")
-Device24Modbus.run()
-Device25Modbus=ModbusServer("",1524,"dp-pumps","DPVCI","https://www.dp-pumps.com/","DPVCI","15/17(19) B")
-Device25Modbus.run()
-
-
 Device1=BaseDevice("WellDevice",1500,Device1Modbus)
 Device2=BaseDevice("Pump1Device",1501,Device2Modbus)
 Device3=BaseDevice("Valve1Device",1502,Device3Modbus)
@@ -220,14 +195,9 @@ Device12=BaseDevice("StorageTankDevice",1511,Device12Modbus)
 Device13=BaseDevice("Pump2Device",1512,Device13Modbus)
 Device14=BaseDevice("Valve7Device",1513,Device14Modbus)
 Device15=BaseDevice("HighRiseReservoirDevice",1514,Device15Modbus)
-Device16=BaseDevice("ChlorinePump1Device",1515,Device16Modbus)
-Device17=BaseDevice("ChlorinePump2Device",1516,Device16Modbus)
-Device18=BaseDevice("ChlorinePump3Device",1517,Device16Modbus)
-
-
-Device23=BaseDevice("Pump3",1522,Device23Modbus)
-Device24=BaseDevice("Pump4",1523,Device24Modbus)
-Device25=BaseDevice("Pump5",1524,Device25Modbus)
+Device16=BaseDevice("PipeToRetentionTank1",1515,Device16Modbus)
+Device17=BaseDevice("PipeToRetentionTank2",1516,Device17Modbus)
+Device18=BaseDevice("PipeToRetentionTank3",1517,Device18Modbus)
 
 
 #Device17=BaseDevice("ChlorinePump1Device",1516,Device17Modbus)
@@ -244,17 +214,14 @@ Device2.addActuator(Pump1)
 Device3.addSensor(Valve1FlowSensor)
 Device3.addSensor(Valve1PressureSensor)
 Device3.addActuator(Valve1)
-Device3.addSensor(Valve1ChlorineSensor)
 
 Device4.addSensor(Valve2FlowSensor)
 Device4.addSensor(Valve2PressureSensor)
 Device4.addActuator(Valve2)
-Device4.addSensor(Valve2ChlorineSensor)
 
 Device5.addSensor(Valve3FlowSensor)
 Device5.addSensor(Valve3PressureSensor)
 Device5.addActuator(Valve3)
-Device5.addSensor(Valve3ChlorineSensor)
 
 Device6.addSensor(Retention1WaterLevelSensor)
 Device6.addSensor(Retention1PressureSensor)
@@ -292,43 +259,25 @@ Device15.addSensor(ReservoirWaterLevelSensor)
 Device15.addSensor(ReservoirPressureSensor)
 
 # Device16.addSensor(ChlorinePressureSensor1)
-Device16.addSensor(ChlorineConcentrationSensor1)
+# Device16.addSensor(ChlorineConcentrationSensor1)
 
 # Device17.addSensor(ChlorinePressureSensor2)
-Device17.addSensor(ChlorineConcentrationSensor2)
+# Device17.addSensor(ChlorineConcentrationSensor2)
 
 # Device18.addSensor(ChlorinePressureSensor3)
-Device18.addSensor(ChlorineConcentrationSensor3)
+# Device18.addSensor(ChlorineConcentrationSensor3)
 
-Device16.addActuator(ChlorineTankPump1)
-Device17.addActuator(ChlorineTankPump2)
-Device18.addActuator(ChlorineTankPump3)
+# Device16.addActuator(ChlorineTankPump1)
 
-Device23.addSensor(Pump3FlowSensor)
-Device23.addSensor(Pump3PressureSensor)
-Device23.addActuator(Pump3)
+# Device17.addActuator(ChlorineTankPump2)
 
-Device24.addSensor(Pump4FlowSensor)
-Device24.addSensor(Pump4PressureSensor)
-Device24.addActuator(Pump4)
-
-Device25.addSensor(Pump5FlowSensor)
-Device25.addSensor(Pump5PressureSensor)
-Device25.addActuator(Pump5)
+# Device18.addActuator(ChlorineTankPump3)
 
 
 ##Test ICS Run Demo
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 Pump1.setState(10000)
-print("Pump1 state changed to 10000")
-Pump2.setState(10000)
-print("Pump2 state changed to 10000")
-Pump3.setState(10000)
-print("Pump3 state changed to 10000")
-Pump4.setState(10000)
-print("Pump4 state changed to 10000")
-Pump5.setState(10000)
-print("Pump5 state changed to 10000")
+print("Pump state changed to 10000")
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 Valve1.setState(0)
 print("Valve state changed to 0")
@@ -410,14 +359,14 @@ while(True):
 
     # print ("PipeToRetentionTank1, flow: "+ str(PipeToRetentionTank1.getFlow()))
     print ("Retention1, WaterLevel: "+ str(int((RetentionTank1.getWaterLevel()*100)/RetentionTank1.getHeight())))
-    # print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
+    print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
     # print ("RetentionToStoragePipe1, flow: "+ str(RetentionToStoragePipe1.getFlow()))
-    # print ("Valve7, state: "+ str(Valve7._state))
+    # print ("Valve4, state: "+ str(Valve4._state))
     # print ("Pump1, Flow: "+ str(Pump1._flow))
     # print ("Pump1, state: "+ str(Pump1._state))
-    # print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
-    # print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
-    # print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1.getFlow()))
+    print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
+    print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
+    print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1.getFlow()))
 
     print ("StorageTank, WaterLevel: "+ str(StorageTank.getWaterLevel()))
     # print ("StorageTank, Pressure: "+ str(StorageTank.getHydroPressure()))
@@ -427,8 +376,6 @@ while(True):
     # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
     # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
     # print ("Pump2, Flow: "+ str(Pump2._flow))
-    print ("Reservoir, WaterLevel: "+ str(Reservoir.getWaterLevel()))
-
 
     time.sleep(2)
 # Valve1.setState(10000)

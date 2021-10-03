@@ -14,7 +14,7 @@ class Pump(BaseActuator):
     def setState(self, state): 
         self._state=state
         
-        self._flow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution))
+        self._flow=min((self._maxFlow-self._minFlow)*(self._state/(2**self._resolution)),self._componentOut._flowOut)
         # print ("Pump state changed "+str(self._flow))
 
         self._componentIn.updateFlowOut(self._flow)
