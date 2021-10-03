@@ -94,24 +94,29 @@ class Pipeline(BaseComponent):
 
     def getChlorineConcentration(self, x):
         # x is the disantce from the start of the pipeline, where we want to measure the Cl concentration
-        if(self._flow>0):
-            #print ("Flow :" + str(self._flow))
-            #print (x)
-            #print (math.pi*pow(self._diameter,2))
-            timeToFlow=(self._flow*4)/(math.pi*pow(self._diameter,2))
-            timeToFlow= x/timeToFlow
+        if(x==0):
+            return self._chlorineConcentrationAtStart
+        
+        else:
 
-            #print("Time to flow:"+str(timeToFlow))
-            chlorineHistoryIndex=(int(timeToFlow/self._refreshingTime)+1)%50
-            #print ("Cl history index:"+str(chlorineHistoryIndex)+"\n")
+            if(self._flow>0):
+                #print ("Flow :" + str(self._flow))
+                #print (x)
+                #print (math.pi*pow(self._diameter,2))
+                timeToFlow=(self._flow*4)/(math.pi*pow(self._diameter,2))
+                timeToFlow= x/timeToFlow
 
-            chlorineAtX=self._chlorineConcentrationHistory[chlorineHistoryIndex]*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
-            #chlorineAtX=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
-            return chlorineAtX
+                #print("Time to flow:"+str(timeToFlow))
+                chlorineHistoryIndex=(int(timeToFlow/self._refreshingTime)+1)%50
+                #print ("Cl history index:"+str(chlorineHistoryIndex)+"\n")
 
-        elif (self._flow==0):
-            #should find a equation to model with the dispersion
-            return 0
+                chlorineAtX=self._chlorineConcentrationHistory[chlorineHistoryIndex]*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
+                #chlorineAtX=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
+                return chlorineAtX
+
+            elif (self._flow==0):
+                #should find a equation to model with the dispersion
+                return 0
 
     def getHydroPressure(self):
         return 350000

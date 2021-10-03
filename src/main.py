@@ -94,12 +94,15 @@ Pump1PressureSensor=HydroPressureSensor(PipeFromWell)
 
 Valve1FlowSensor=FlowMeterSensor(PipeToRetentionTank1)
 Valve1PressureSensor=HydroPressureSensor(PipeToRetentionTank1)
+Valve1ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank1, 16,0,4,51,PipeToRetentionTank1._length)
 
 Valve2FlowSensor=FlowMeterSensor(PipeToRetentionTank2)
 Valve2PressureSensor=HydroPressureSensor(PipeToRetentionTank2)
+Valve2ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank2, 16,0,4,51,PipeToRetentionTank2._length)
 
 Valve3FlowSensor=FlowMeterSensor(PipeToRetentionTank3)
 Valve3PressureSensor=HydroPressureSensor(PipeToRetentionTank3)
+Valve3ChlorineSensor=GasConcentrationSensor(PipeToRetentionTank3, 16,0,4,51,PipeToRetentionTank3._length)
 
 Retention1WaterLevelSensor=WaterLevelSensor(RetentionTank1)
 Retention1PressureSensor=HydroPressureSensor(RetentionTank1)
@@ -132,9 +135,9 @@ ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
 ReservoirPressureSensor=HydroPressureSensor(Reservoir)
 
 
-ChlorineConcentrationSensor1=GasConcentrationSensor(ChlorineInjectTank)
-ChlorineConcentrationSensor2=GasConcentrationSensor(ChlorineInjectTank)
-ChlorineConcentrationSensor3=GasConcentrationSensor(ChlorineInjectTank)
+ChlorineConcentrationSensor1=GasConcentrationSensor(PipeToRetentionTank1)
+ChlorineConcentrationSensor2=GasConcentrationSensor(PipeToRetentionTank2)
+ChlorineConcentrationSensor3=GasConcentrationSensor(PipeToRetentionTank3)
 
 
 #_vendorName,_ProductCode,_VendorUrl,_ProductName,_ModelName
@@ -216,14 +219,17 @@ Device2.addActuator(Pump1)
 Device3.addSensor(Valve1FlowSensor)
 Device3.addSensor(Valve1PressureSensor)
 Device3.addActuator(Valve1)
+Device3.addSensor(Valve1ChlorineSensor)
 
 Device4.addSensor(Valve2FlowSensor)
 Device4.addSensor(Valve2PressureSensor)
 Device4.addActuator(Valve2)
+Device4.addSensor(Valve2ChlorineSensor)
 
 Device5.addSensor(Valve3FlowSensor)
 Device5.addSensor(Valve3PressureSensor)
 Device5.addActuator(Valve3)
+Device5.addSensor(Valve3ChlorineSensor)
 
 Device6.addSensor(Retention1WaterLevelSensor)
 Device6.addSensor(Retention1PressureSensor)
