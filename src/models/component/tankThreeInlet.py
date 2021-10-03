@@ -89,7 +89,6 @@ class TankThreeInlet(BaseComponent):
     def getHydroPressure(self):
         return self._waterLevel*10    
 
-
         
     def __call__(self):
         self.updateFlowIn(self._componentIn1.getFlow()+self._componentIn2.getFlow()+self._componentIn3.getFlow())
