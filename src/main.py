@@ -339,8 +339,8 @@ Device28.addSensor(RetentionTank3ChlorineSensor)
 
 ##Test ICS Run Demo
 # print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
-Pump1.setState(10000)
-print("Pump1 state changed to 10000")
+# Pump1.setState(10000)
+# print("Pump1 state changed to 10000")
 # Pump2.setState(10000)
 # print("Pump2 state changed to 10000")
 # Pump3.setState(10000)
@@ -355,37 +355,25 @@ print ("Well, flow: "+ str(RiverWell.getFlow()))
 print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 while(True):
-    # if(Valve1._state==0 and Valve2._state==0 and Valve3._state==0 and Pump1._state!=0):
-    #     for j in range(2):
-    #         i=1501
-    #         try:
-    #             c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
-    #         except ValueError:
-    #             print ("Error with host or port params")
-    #         if c.open():
-    #             c.write_single_register(0,0)
-    #             c.close()
-    #             print("Pump at  : {} closed successful".format(i))
-    #         else:
-    #             c.close()
-    #             print("Pump at  : {} closed failed".format(i))
-    # if((Valve1._state!=0 or Valve2._state!=0 or Valve3._state!=0) and Pump1._state==0):
-    #     for j in range(2):
-    #         i=1501
-    #         try:
-    #             c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
-    #         except ValueError:
-    #             print ("Error with host or port params")
-    #         if c.open():
-    #             c.write_single_register(0,0)
-    #             c.close()
-    #             print("Pump at  : {} opened successful".format(i))
-    #         else:
-    #             c.close()
-    #             print("Pump at  : {} opened failed".format(i))
-    if(Valve4._state==0 and Pump3._state!=0):
+    if(Valve1._state==0 and Valve2._state==0 and Valve3._state==0 and Pump1._state!=0):
+        print(Valve1._state , Valve2._state , Valve3._state , Pump1._state)
         for j in range(2):
-            i=1522
+            i=1501
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_coil(0,0)
+                c.close()
+                print("Pump at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Pump at  : {} closed failed".format(i))
+    if((Valve1._state!=0 or Valve2._state!=0 or Valve3._state!=0) and Pump1._state==0):
+        print(Valve1._state , Valve2._state , Valve3._state , Pump1._state)
+        for j in range(2):
+            i=1501
             try:
                 c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
             except ValueError:
@@ -393,11 +381,12 @@ while(True):
             if c.open():
                 c.write_single_coil(0,1)
                 c.close()
-                print("Pump at  : {} closed successful".format(i))
+                print("Pump at  : {} opened successful".format(i))
             else:
                 c.close()
-                print("Pump at  : {} closed failed".format(i))
-    if(Valve4._state!=0 and Pump3._state==0):
+                print("Pump at  : {} opened failed".format(i))
+    if(Valve4._state==0 and Pump3._state!=0):
+        print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
             try:
@@ -406,6 +395,21 @@ while(True):
                 print ("Error with host or port params")
             if c.open():
                 c.write_single_coil(0,0)
+                c.close()
+                print("Pump at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Pump at  : {} closed failed".format(i))
+    if(Valve4._state!=0 and Pump3._state==0):
+        print(Valve4._state , Pump3._state)
+        for j in range(2):
+            i=1522
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -420,7 +424,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,1)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -434,7 +438,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -449,7 +453,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,1)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -463,7 +467,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -478,7 +482,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,1)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -492,7 +496,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_coil(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -568,6 +572,7 @@ while(True):
             else:
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
+    time.sleep(2)
 # Valve1.setState(10000)
 # for i in range(500):
 #     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
