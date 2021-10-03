@@ -40,9 +40,9 @@ PipeFromWell.addComponentOut(PipeToRetentionTank3)
 #RetentionTank2=Tank(PipeThreeWay,5,10,1/3,1/3)
 #RetentionTank3=Tank(PipeThreeWay,5,10,1/3,1/3)
 
-RetentionTank1=Tank(PipeToRetentionTank1,30,50,0,0)
-RetentionTank2=Tank(PipeToRetentionTank2,30,50,0,0)
-RetentionTank3=Tank(PipeToRetentionTank3,30,50,0,0)
+RetentionTank1=Tank(PipeToRetentionTank1,30,80,0,0)
+RetentionTank2=Tank(PipeToRetentionTank2,30,80,0,0)
+RetentionTank3=Tank(PipeToRetentionTank3,30,80,0,0)
 
 #PipeThreeWay.addComponentOut(RetentionTank1,RetentionTank2,RetentionTank3)
 
@@ -70,22 +70,22 @@ Reservoir=HighRiseReservoir(StoragePumpToValve,50,10,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
-Pump1=Pump(RiverWell,PipeFromWell,16,20,0,1)
+Pump1=Pump(RiverWell,PipeFromWell,16,2,0,1)
 Valve1=Valve(PipeToRetentionTank1,RetentionTank1,16,1,0,0)
 Valve2=Valve(PipeToRetentionTank2,RetentionTank2,16,1,0,0)
 Valve3=Valve(PipeToRetentionTank3,RetentionTank3,16,1,0,0)
 Valve4=Valve(RetentionToStoragePipe1,StorageTank,16,1,0,0)
 Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,1,0,0)
 Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,1,0,0)
-Pump2=Pump(StorageTank,StoragePumpToValve,16,20,0,1)
+Pump2=Pump(StorageTank,StoragePumpToValve,16,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
 ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
 ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
 ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
 
-Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,20,0,1)
-Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,20,0,1)
-Pump5=Pump(RetentionTank3,RetentionToStoragePipe3,16,20,0,1)
+Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,2,0,1)
+Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,2,0,1)
+Pump5=Pump(RetentionTank3,RetentionToStoragePipe3,16,2,0,1)
 
 
 
@@ -391,7 +391,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -405,7 +405,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -420,7 +420,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -434,7 +434,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -449,7 +449,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -463,7 +463,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -478,7 +478,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} closed successful".format(i))
             else:
@@ -492,7 +492,7 @@ while(True):
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                c.write_single_register(0,0)
+                c.write_single_coil(0,0)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -568,33 +568,6 @@ while(True):
             else:
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
-
-    print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
-    print ("PipeToRetentionTank1, FlowOut: "+ str(PipeToRetentionTank1._flowOut))
-    print ("PipeToRetentionTank1, FlowIn: "+ str(PipeToRetentionTank1._flowIn))
-    print ("PipeToRetentionTank1, flow: "+ str(PipeToRetentionTank1.getFlow()))
-    print ("Retention1, WaterLevel: "+ str(int((RetentionTank1.getWaterLevel()*100)/RetentionTank1.getHeight())))
-    # print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
-    # print ("RetentionToStoragePipe1, flow: "+ str(RetentionToStoragePipe1.getFlow()))
-    # print ("Valve7, state: "+ str(Valve7._state))
-    # print ("Pump1, Flow: "+ str(Pump1._flow))
-    # print ("Pump1, state: "+ str(Pump1._state))
-    print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
-    print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
-    print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1.getFlow()))
-
-    print ("StorageTank, WaterLevel: "+ str(StorageTank.getWaterLevel()))
-    # print ("StorageTank, Pressure: "+ str(StorageTank.getHydroPressure()))
-    # print ("StorageTank, FlowOut: "+ str(StorageTank._flowOut))
-    # print ("StoragePumpToValve, FlowIn: "+ str(StoragePumpToValve._flowIn))
-    # print ("StoragePumpToValve, FlowOut: "+ str(StoragePumpToValve._flowOut))
-    # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
-    # print ("StoragePumpToValve, Flow: "+ str(StoragePumpToValve.getFlow()))
-    # print ("Pump2, Flow: "+ str(Pump2._flow))
-    print ("Reservoir, WaterLevel: "+ str(Reservoir.getWaterLevel()))
-
-
-    time.sleep(2)
 # Valve1.setState(10000)
 # for i in range(500):
 #     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
