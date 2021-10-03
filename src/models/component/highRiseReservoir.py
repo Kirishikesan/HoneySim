@@ -39,7 +39,7 @@ class HighRiseReservoir(BaseComponent):
         while(True):
             
             waterLevelTemp=self._waterLevel
-            self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*self._refreshingTime
+            self._waterLevel=self._waterLevel + (self._flowIn-self._flowOut)*self._refreshingTime/self._baseArea
             
             try:   
                 chlorineVolIn = self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime

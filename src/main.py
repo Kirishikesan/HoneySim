@@ -66,7 +66,7 @@ RetentionToStoragePipe2.addComponentOut(StorageTank)
 RetentionToStoragePipe3.addComponentOut(StorageTank)
 StoragePumpToValve=Pipeline(StorageTank,200,0.2,0,0)
 StorageTank.addComponentOut(StoragePumpToValve)
-Reservoir=HighRiseReservoir(StoragePumpToValve,200,300,0,0)
+Reservoir=HighRiseReservoir(StoragePumpToValve,50,10,0,0)
 StoragePumpToValve.addComponentOut(Reservoir)
 ChlorineInjectTank=ChlorineTank(100,10,10,500)
 
