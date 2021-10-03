@@ -572,6 +572,9 @@ while(True):
             else:
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
+
+    print ("Pump1, State: "+ str(Pump1._state))
+
     time.sleep(2)
 # Valve1.setState(10000)
 # for i in range(500):
