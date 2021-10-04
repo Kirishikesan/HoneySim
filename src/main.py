@@ -79,9 +79,9 @@ Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,1,0,0)
 Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,1,0,0)
 Pump2=Pump(StorageTank,StoragePumpToValve,16,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
-ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,1,0,0)
-ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,1,0,0)
-ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,1,0,0)
+ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,16,10,0,0)
+ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,16,10,0,0)
+ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,16,10,0,0)
 
 Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,2,0,1)
 Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,2,0,1)
@@ -385,7 +385,7 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} opened failed".format(i))
-    if(Valve4._state==0 and Pump3._state!=0):
+    if(Valve4._state==0 and Pump3._state!=False):
         print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
@@ -400,15 +400,17 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
-    if(Valve4._state!=0 and Pump3._state==0):
+    if(Valve4._state!=0 and Pump3._state==False):
         print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
             try:
                 c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+                print("Hi")
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
+                print("Hello")
                 c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
@@ -573,7 +575,20 @@ while(True):
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
 
-    print ("Pump1, State: "+ str(Pump1._state))
+    # print ("Pump1, State: "+ str(Pump1._state))
+
+
+    print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
+    print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
+    print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
+    print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
+    print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1._flow))
+    print ("Pump3, Flow: "+ str(Pump3._flow))
+    print ("Pump3, State: "+ str(Pump3._state))
+    print ("Pump3, State: "+ str(Valve4._state))
+
+
+
 
     time.sleep(2)
 # Valve1.setState(10000)

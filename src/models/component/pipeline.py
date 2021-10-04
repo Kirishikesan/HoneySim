@@ -92,6 +92,7 @@ class Pipeline(BaseComponent):
             self._update_observers(self._flow, clEnd, id(self))
 
             
+            # print("Test "+str(self._flow)+" "+str(self._chlorineConcentrationAtStart)+" "+str(self._chlorineFlowClTank))
 
             #print ("Chlorine concentration in pipeline: " + str(self._chlorineConcentrationAtStart))
             time.sleep(self._refreshingTime)
