@@ -502,6 +502,20 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} opened failed".format(i))
+    if(StorageTank.getWaterLevel()<=0 and Valve7._state!=0):
+        for j in range(2):
+            i=1513
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_register(0,0)
+                c.close()
+                print("Valve at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Valve at  : {} closed failed".format(i))
     if((RetentionTank1.getWaterLevel()*100)/RetentionTank1.getHeight()>=85):
         for j in range(2):
             i=1502
