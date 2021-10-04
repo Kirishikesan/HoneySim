@@ -355,8 +355,49 @@ print ("Well, flow: "+ str(RiverWell.getFlow()))
 print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 while(True):
+    if(Valve1._state==0 and ChlorineTankPump1._state!=False):
+        for j in range(2):
+            i=1525
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_coil(0,0)
+                c.close()
+                print("Pump at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Pump at  : {} closed failed".format(i))
+    if(Valve2._state==0 and ChlorineTankPump2._state!=False):
+        for j in range(2):
+            i=1526
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_coil(0,0)
+                c.close()
+                print("Pump at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Pump at  : {} closed failed".format(i))
+    if(Valve3._state==0 and ChlorineTankPump3._state!=False):
+        for j in range(2):
+            i=1527
+            try:
+                c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
+            except ValueError:
+                print ("Error with host or port params")
+            if c.open():
+                c.write_single_coil(0,0)
+                c.close()
+                print("Pump at  : {} closed successful".format(i))
+            else:
+                c.close()
+                print("Pump at  : {} closed failed".format(i))
     if(Valve1._state==0 and Valve2._state==0 and Valve3._state==0 and Pump1._state!=0):
-        print(Valve1._state , Valve2._state , Valve3._state , Pump1._state)
         for j in range(2):
             i=1501
             try:
@@ -371,7 +412,6 @@ while(True):
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
     if((Valve1._state!=0 or Valve2._state!=0 or Valve3._state!=0) and Pump1._state==0):
-        print(Valve1._state , Valve2._state , Valve3._state , Pump1._state)
         for j in range(2):
             i=1501
             try:
@@ -386,7 +426,6 @@ while(True):
                 c.close()
                 print("Pump at  : {} opened failed".format(i))
     if(Valve4._state==0 and Pump3._state!=False):
-        print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
             try:
@@ -401,7 +440,6 @@ while(True):
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
     if(Valve4._state!=0 and Pump3._state==False):
-        print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
             try:
