@@ -385,7 +385,7 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} opened failed".format(i))
-    if(Valve4._state==0 and Pump3._state!=0):
+    if(Valve4._state==0 and Pump3._state!=False):
         print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
@@ -400,7 +400,7 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
-    if(Valve4._state!=0 and Pump3._state==0):
+    if(Valve4._state!=0 and Pump3._state==False):
         print(Valve4._state , Pump3._state)
         for j in range(2):
             i=1522
@@ -573,7 +573,20 @@ while(True):
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
 
-    print ("Pump1, State: "+ str(Pump1._state))
+    # print ("Pump1, State: "+ str(Pump1._state))
+
+
+    print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
+    print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
+    print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
+    print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
+    print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1._flow))
+    print ("Pump3, Flow: "+ str(Pump3._flow))
+    print ("Pump3, State: "+ str(Pump3._state))
+    print ("Pump3, State: "+ str(Valve4._state))
+
+
+
 
     time.sleep(2)
 # Valve1.setState(10000)

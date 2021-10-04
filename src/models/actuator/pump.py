@@ -28,9 +28,9 @@ class Pump(BaseActuator):
         print("Pump update method called")
         reg=[]
         reg=list(modbusServer.get(self._register,self._address,1))
-        print(reg)
-        # print("Actuator modified through modbus {}".format(self))
-        print("Pump update method called "+ str(reg[0]))
+        # print(reg)
+        # # print("Actuator modified through modbus {}".format(self))
+        # print("Pump update method called "+ str(reg[0]))
 
         if(reg[0]!=self._state):
             self.setState(reg[0])

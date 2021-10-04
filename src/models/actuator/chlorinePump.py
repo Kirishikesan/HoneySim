@@ -1,7 +1,7 @@
 from models.actuator.baseActuator import BaseActuator
 
 class ChlorinePump(BaseActuator):
-    def __init__(self,componentIn,componenetOut, resolution,maxFlow,minFlow,state=0,register=1,address=50):
+    def __init__(self,componentIn,componenetOut, resolution,maxFlow,minFlow,state=0,register=3,address=0):
         super().__init__(componentIn, componenetOut)
         self._state=state
         self._maxFlow=maxFlow
