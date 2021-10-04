@@ -79,9 +79,9 @@ Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,1,0,0)
 Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,1,0,0)
 Pump2=Pump(StorageTank,StoragePumpToValve,16,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
-ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,16,10,0,0)
-ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,16,10,0,0)
-ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,16,10,0,0)
+ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,100,0,0)
+ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,100,0,0)
+ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,100,0,0)
 
 Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,2,0,1)
 Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,2,0,1)
@@ -406,11 +406,9 @@ while(True):
             i=1522
             try:
                 c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
-                print("Hi")
             except ValueError:
                 print ("Error with host or port params")
             if c.open():
-                print("Hello")
                 c.write_single_coil(0,1)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
