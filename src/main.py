@@ -59,7 +59,7 @@ RetentionTank2.addComponentOut(RetentionToStoragePipe2)
 RetentionToStoragePipe3=Pipeline(RetentionTank3,50,15,0,0)
 RetentionTank3.addComponentOut(RetentionToStoragePipe3)
 
-StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,20,5,0,0)
+StorageTank=TankThreeInlet(RetentionToStoragePipe1,RetentionToStoragePipe2,RetentionToStoragePipe3,50,30,0,0)
 
 RetentionToStoragePipe1.addComponentOut(StorageTank)
 RetentionToStoragePipe2.addComponentOut(StorageTank)
