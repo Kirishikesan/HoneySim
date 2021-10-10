@@ -79,9 +79,9 @@ Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,1,0,0)
 Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,1,0,0)
 Pump2=Pump(StorageTank,StoragePumpToValve,16,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
-ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,100,0,0)
-ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,100,0,0)
-ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,100,0,0)
+ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,16,10,0,0)
+ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,16,10,0,0)
+ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,16,10,0,0)
 
 Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,2,0,1)
 Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,2,0,1)
@@ -233,8 +233,8 @@ Device13=BaseDevice("Pump2Device",1512,Device13Modbus)
 Device14=BaseDevice("Valve7Device",1513,Device14Modbus)
 Device15=BaseDevice("HighRiseReservoirDevice",1514,Device15Modbus)
 Device16=BaseDevice("ChlorinePump1Device",1515,Device16Modbus)
-Device17=BaseDevice("ChlorinePump2Device",1516,Device16Modbus)
-Device18=BaseDevice("ChlorinePump3Device",1517,Device16Modbus)
+Device17=BaseDevice("ChlorinePump2Device",1516,Device17Modbus)
+Device18=BaseDevice("ChlorinePump3Device",1517,Device18Modbus)
 
 
 Device23=BaseDevice("Pump3",1522,Device23Modbus)
@@ -636,7 +636,8 @@ while(True):
     print ("Pump3, Flow: "+ str(Pump3._flow))
     print ("Pump3, State: "+ str(Pump3._state))
     print ("Pump3, State: "+ str(Valve4._state))
-
+    print ("PipetoRetentionTank1, cl at start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
+    print ("\n\n\n\n\n\n")
 
 
 
