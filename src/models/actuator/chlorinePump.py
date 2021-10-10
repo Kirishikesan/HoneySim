@@ -9,8 +9,7 @@ class ChlorinePump(BaseActuator):
         self._resolution=resolution
         self._register=register
         self._address=address
-        self._flow=0
-        #print ("Chlorine pump initialized; flow:" +str(self._flow))
+        self._flow=self.setFlow()
     
     def setFlow(self): 
         clFlow=(self._maxFlow-self._minFlow)*(self._state/(2**self._resolution))
@@ -18,11 +17,9 @@ class ChlorinePump(BaseActuator):
         self._componentOut.updateChlorineFromTankIn(clFlow) 
     
     def setState(self,state):
-        #print ("Cl pump state changed")
         self._state=state
         self.setFlow()
     
     def update(self,modbusServer):
         reg=list(modbusServer.get(self._register,self._address,1))
-
         self.setState(reg[0])

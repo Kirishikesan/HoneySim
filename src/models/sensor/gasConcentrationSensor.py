@@ -12,7 +12,7 @@ class GasConcentrationSensor(BaseSensor):
         self._register=register
         self._address=address
         self._distance=distance
-        self._value=self.setValue()        
+        self._value=self.setValue()      
 
     def updateRegisters(self):
         value=[]
