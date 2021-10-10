@@ -36,12 +36,13 @@ class ModbusServer:
     def update(self,register,address,values):
         self.context[0].setValues(register,address,values)
         print ("Registers updated with the sensor values: port"+str(self._port)+" value:"+str(values))
-        print ("\n\n\n")
+        print ("Updated register:"+str(self.context[0].getValues(4,51,1)))
+        #print ("\n\n\n")
 
     def get(self,register,address,_count):
-        print ("Register values received:for port:"+str(self._port))
-        print (self.context[0].getValues(register, address, count=_count))
-        print ("\n\n\n\n\n")
+        #print ("Register values received:for port:"+str(self._port))
+        #print (self.context[0].getValues(register, address, count=_count))
+        #print ("\n\n\n\n\n")
         return self.context[0].getValues(register, address, count=_count)
 
     

@@ -18,11 +18,13 @@ class GasConcentrationSensor(BaseSensor):
         value=[]
         # print(self.getValue())
         value.append(int(self.getValue()*100))
-        # print(value)
+        print(str(self._component)+"cl updated:"+str(value))
         self._device.updateToRegisters(self._register,self._address,value)
 
     def getValue(self):
-        return self._component.getChlorineConcentration(self._distance)
+        clconc=self._component.getChlorineConcentration(self._distance)
+        #print("clconc:"+str(clconc))
+        return clconc
 
     def setValue(self):
         self._value=self.getValue()        

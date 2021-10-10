@@ -177,7 +177,7 @@ while(True):
             print("Read failed at address  : {}".format(i))
 
     
-    for i in range(1515,1518):
+    for i in range(1515,1517):
         try:
             c=ModbusClient(host="127.0.0.1", port=i, unit_id=1, auto_open=True, debug=False)
         except ValueError:
