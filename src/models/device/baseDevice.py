@@ -41,4 +41,5 @@ class BaseDevice:
             actuator.update(self._modbusServer)
     
     def updateToRegisters(self,register,address,value):
+        #print("Device: "+str(self._name)+" / Modbus server:"+str(self._modbusServer._port))
         self._modbusServer.update(register,address,value)
