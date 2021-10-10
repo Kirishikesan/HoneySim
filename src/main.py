@@ -79,9 +79,9 @@ Valve5=Valve(RetentionToStoragePipe2,StorageTank,16,1,0,0)
 Valve6=Valve(RetentionToStoragePipe3,StorageTank,16,1,0,0)
 Pump2=Pump(StorageTank,StoragePumpToValve,16,2,0,1)
 Valve7=Valve(StoragePumpToValve,Reservoir,16,1,0,0)
-ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,4,100,0,0)
-ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,4,100,0,0)
-ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,4,100,0,0)
+ChlorineTankPump1=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank1,16,10,0,1)
+ChlorineTankPump2=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank2,16,10,0,1)
+ChlorineTankPump3=ChlorinePump(ChlorineInjectTank,PipeToRetentionTank3,16,10,0,1)
 
 Pump3=Pump(RetentionTank1,RetentionToStoragePipe1,16,2,0,1)
 Pump4=Pump(RetentionTank2,RetentionToStoragePipe2,16,2,0,1)
@@ -573,7 +573,7 @@ while(True):
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
 
-    # print ("Pump1, State: "+ str(Pump1._state))
+    print ("Pump1, State: "+ str(Pump1._state))
 
 
     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
@@ -585,6 +585,15 @@ while(True):
     print ("Pump3, State: "+ str(Pump3._state))
     print ("Pump3, State: "+ str(Valve4._state))
 
+    print ("PipetoRetentionTank1 cl concentration: "+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
+    print ("ChlorinePump1 flow:"+str(ChlorineTankPump1._flow))
+    print ("PipetoRetentionTank2 cl concentration: "+str(PipeToRetentionTank2._chlorineConcentrationAtStart))
+    print ("ChlorinePump2 flow:"+str(ChlorineTankPump2._flow))
+    print ("PipetoRetentionTank3 cl concentration: "+str(PipeToRetentionTank3._chlorineConcentrationAtStart))
+    print ("ChlorinePump3 flow:"+str(ChlorineTankPump3._flow))
+    print ("RetentionTank1 cl concentration: "+str(RetentionTank1._chlorineConcentration))
+    print ("\n\n\n\n\n")
+ 
 
 
 

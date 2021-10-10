@@ -46,12 +46,11 @@ class Pipeline(BaseComponent):
         self.updateFlow()
 
     def updateChlorineFromTankIn(self, chlorineFromTank):
-        self.updateSensors()
         if(self._flow>0):
             self._chlorineFlowClTank = chlorineFromTank
         else:
-            self._chlorineFlowClTank = 0
-        
+            self._chlorineFlowClTank =0
+
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
         # print ("pipeline flow changed, flow:" + str(self._flow))
@@ -96,7 +95,7 @@ class Pipeline(BaseComponent):
 
             #print ("Chlorine concentration in pipeline: " + str(self._chlorineConcentrationAtStart))
             time.sleep(self._refreshingTime)
-
+            
     def getChlorineConcentration(self, x):
         # x is the disantce from the start of the pipeline, where we want to measure the Cl concentration
         if(x==0):
