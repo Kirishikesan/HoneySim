@@ -50,10 +50,12 @@ class Tank(BaseComponent):
         return self._waterLevel*10
 
     def updateWaterLevel(self):
-        #print ("Tank water level changing thread started")
+        print ("Tank water level changing thread started")
+        print ("HI\nHI\nhi\nhi\nhi\nhi\n")
         while(True):
             waterLevelTemp=self._waterLevel
             print("Tank water lever thread:"+str(self._flowIn)+","+str(self._flowOut)+","+str(self._waterLevel))
+            print ("\n\n\n\n\n\n\n\n\n\n\n\n\n")
             self._waterLevel=self._waterLevel + ((self._flowIn-self._flowOut)*self._refreshingTime)/(self._baseArea)
                 
             if(self._waterLevel<0):

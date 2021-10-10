@@ -332,9 +332,9 @@ Device25.addSensor(Pump5FlowSensor)
 Device25.addSensor(Pump5PressureSensor)
 Device25.addActuator(Pump5)
 
-#Device26.addSensor(RetentionTank1ChlorineSensor)
-#Device27.addSensor(RetentionTank2ChlorineSensor)
-#Device28.addSensor(RetentionTank3ChlorineSensor)
+Device26.addSensor(RetentionTank1ChlorineSensor)
+Device27.addSensor(RetentionTank2ChlorineSensor)
+Device28.addSensor(RetentionTank3ChlorineSensor)
 
 
 ##Test ICS Run Demo

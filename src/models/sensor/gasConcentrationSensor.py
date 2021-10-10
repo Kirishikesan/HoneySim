@@ -22,9 +22,8 @@ class GasConcentrationSensor(BaseSensor):
         self._device.updateToRegisters(self._register,self._address,value)
 
     def getValue(self):
-        clconc=self._component.getChlorineConcentration(self._distance)
-        #print(str(self._component)+"  clconc:"+str(clconc))
-        return clconc
+        return self._component.getChlorineConcentration(self._distance)
+        
 
     def setValue(self):
         self._value=self.getValue()        
