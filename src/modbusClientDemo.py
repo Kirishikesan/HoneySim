@@ -75,7 +75,7 @@ for j in range(2):
 
 
         if c.open():
-            c.write_single_register(0,65000)
+            c.write_single_register(0,35000)
             # c.write_multiple_coils(0, [True,True,True])
             # c.write_multiple_registers(0, [65000]*30)
             # c.write_single_coil(0, True)

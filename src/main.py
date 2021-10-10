@@ -627,7 +627,9 @@ while(True):
 
     print ("Pump1, State: "+ str(Pump1._state))
 
-
+    print ("PipetoRetentionTank1, flow: "+str(PipeToRetentionTank1._flow))
+    print ("Retentiontank1, flowin: "+str(RetentionTank1._flowIn))
+    print ("Retentiontank1, flowout: "+str(RetentionTank1._flowOut))
     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
     print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
     print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
@@ -646,10 +648,10 @@ while(True):
     print ("RetentionTank1 cl concentration: "+str(RetentionTank1._chlorineConcentration))
     print ("CL Sensor1:"+str(ChlorineConcentrationSensor1.getValue()))
     print ("Device 16 registers,"+str(Device16Modbus.get(4,51,1)))
-    print ("CL sensor1 device: "+str(ChlorineConcentrationSensor1._device))
-    print ("CL sensor2 device: "+str(ChlorineConcentrationSensor2._device))
-    print ("PipetoRetentionTank1 sensors: "+str(PipeToRetentionTank1._sensors))
-    print ("PipetoRetentionTank2 sensors: "+str(PipeToRetentionTank2._sensors))
+    #print ("CL sensor1 device: "+str(ChlorineConcentrationSensor1._device))
+    #print ("CL sensor2 device: "+str(ChlorineConcentrationSensor2._device))
+    #print ("PipetoRetentionTank1 sensors: "+str(PipeToRetentionTank1._sensors))
+    #print ("PipetoRetentionTank2 sensors: "+str(PipeToRetentionTank2._sensors))
     print ("\n\n\n\n\n")
  
 
