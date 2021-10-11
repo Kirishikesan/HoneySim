@@ -12,7 +12,7 @@ class Pump(BaseActuator):
         self._flow=0
     
     def setState(self, state): 
-        if(state==False):
+        if(state==True):
             self._flow=min(self._maxFlow,self._componentOut._flowOut)
         else:
             self._flow=min(self._minFlow,self._componentOut._flowOut)
