@@ -50,12 +50,9 @@ class Tank(BaseComponent):
         return self._waterLevel*10
 
     def updateWaterLevel(self):
-        print ("Tank water level changing thread started")
-        print ("HI\nHI\nhi\nhi\nhi\nhi\n")
         while(True):
             waterLevelTemp=self._waterLevel
-            print("Tank water lever thread:"+str(self._flowIn)+","+str(self._flowOut)+","+str(self._waterLevel))
-            print ("\n\n\n\n\n\n\n\n\n\n\n\n\n")
+            
             self._waterLevel=self._waterLevel + ((self._flowIn-self._flowOut)*self._refreshingTime)/(self._baseArea)
                 
             if(self._waterLevel<0):
@@ -64,9 +61,10 @@ class Tank(BaseComponent):
                 self._waterLevel=self._height*0.9
                 
             try:
-                chlorineVolIn = self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime
-                chlorineVol = self._chlorineConcentration*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*(waterLevelTemp-self._flowOut*self._refreshingTime)
+                chlorineVolIn = (self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime)/self._baseArea
+                chlorineVol = self._chlorineConcentration*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*(waterLevelTemp-self._flowOut*self._refreshingTime/self._baseArea)
                 self._chlorineConcentration= (chlorineVolIn + chlorineVol)/self._waterLevel
+                
             except ZeroDivisionError:
                 self._chlorineConcentration=0
                 #print ("Zero division error, water level is 0")

@@ -38,7 +38,6 @@ class ModbusServer:
         
 
     def get(self,register,address,_count):
-        
         return self.context[0].getValues(register, address, count=_count)
 
     
