@@ -61,10 +61,16 @@ class Tank(BaseComponent):
                 self._waterLevel=self._height*0.9
                 
             try:
-                chlorineVolIn = (self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*self._flowIn*self._refreshingTime)/self._baseArea
-                chlorineVol = self._chlorineConcentration*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))*(waterLevelTemp-self._flowOut*self._refreshingTime/self._baseArea)
+                chlorineVolIn = (self._chlorineFlowComponentIn*(0.35*math.exp(-2*self._refreshingTime/3600)+0.65*math.exp(-0.015*self._refreshingTime/3600))*self._flowIn*self._refreshingTime)/self._baseArea
+                chlorineVol = self._chlorineConcentration*(0.35*math.exp(-2*self._refreshingTime/3600)+0.65*math.exp(-0.015*self._refreshingTime/3600))*(waterLevelTemp-self._flowOut*self._refreshingTime/self._baseArea)
                 self._chlorineConcentration= (chlorineVolIn + chlorineVol)/self._waterLevel
-                
+                '''
+                if(self._chlorineConcentration==0):
+                    self._chlorineConcentration=self._chlorineFlowComponentIn
+                else:
+                    self._chlorineConcentration = self._chlorineConcentration*(0.35*math.exp(-2*self._refreshingTime/3600)+0.65*math.exp(-0.015*self._refreshingTime/3600))
+                '''
+
             except ZeroDivisionError:
                 self._chlorineConcentration=0
                 #print ("Zero division error, water level is 0")

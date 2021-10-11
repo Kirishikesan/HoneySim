@@ -65,7 +65,7 @@ class Pipeline(BaseComponent):
         return self._flow
 
     def decayChlorine(self):
-        self._chlorineAfterDecay=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*self._refreshingTime)+0.65*math.exp(-0.015*self._refreshingTime))
+        self._chlorineAfterDecay=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*self._refreshingTime/3600)+0.65*math.exp(-0.015*self._refreshingTime/3600))
         
     def updateChlorineConcentration(self):
         while(True):
@@ -114,7 +114,8 @@ class Pipeline(BaseComponent):
                 chlorineHistoryIndex=(int(timeToFlow/self._refreshingTime)+1)%50
                 #print ("Cl history index:"+str(chlorineHistoryIndex)+"\n")
 
-                chlorineAtX=self._chlorineConcentrationHistory[chlorineHistoryIndex]*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
+                #chlorineAtX=self._chlorineConcentrationHistory[chlorineHistoryIndex]*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
+                chlorineAtX=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*timeToFlow/3600)+0.65*math.exp(-0.015*timeToFlow/3600))
                 #chlorineAtX=self._chlorineConcentrationAtStart*(0.35*math.exp(-2*timeToFlow)+0.65*math.exp(-0.015*timeToFlow))
                 return chlorineAtX
 

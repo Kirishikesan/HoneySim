@@ -641,6 +641,7 @@ while(True):
     print ("PipetoRetentionTank1, cl at start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
     print ("Tank1 cl in:" +str(RetentionTank1._chlorineFlowComponentIn))
     print ("Retention tank1 cl:" +str(RetentionTank1.getChlorineConcentration(0)))
+    print ("Pupm1 flow: "+str(Pump1FlowSensor.getValue()))
     print ("\n\n\n\n\n\n")
 
 
