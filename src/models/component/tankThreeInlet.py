@@ -54,7 +54,7 @@ class TankThreeInlet(BaseComponent):
             self._chlorineFlowComponentIn=self._chlorineFlowComponentIn+self._allflowClIns[str(inid)]
 
         #print ("Three inlet tank , update flow in called, flowIn:"+str(self._flowIn))
-        self._chlorineFlowComponentIn=chlorineIn
+        #self._chlorineFlowComponentIn=chlorineIn
         #self._update_observers()
 
     def getFlow(self):

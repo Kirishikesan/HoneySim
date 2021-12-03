@@ -132,7 +132,7 @@ Pump2FlowSensor=FlowMeterSensor(StoragePumpToValve)
 Pump2PressureSensor=HydroPressureSensor(StoragePumpToValve)
 
 Valve7FlowSensor=FlowMeterSensor(StoragePumpToValve)
-Valve7PressureSensor=HydroPressureSensor(Reservoir)
+Valve7PressureSensor=HydroPressureSensor(StoragePumpToValve)
 
 ReservoirWaterLevelSensor=WaterLevelSensor(Reservoir)
 ReservoirPressureSensor=HydroPressureSensor(Reservoir)
@@ -366,16 +366,16 @@ Device30.addSensor(ReserviorChlorineSensor)
 # print("Pump5 state changed to 10000")
 # print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 time.sleep(5)
-print ("Well, flow: "+ str(RiverWell.getFlow()))
-print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
-print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
+#print ("Well, flow: "+ str(RiverWell.getFlow()))
+#print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
+#print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
 
 
 while(True):
 
-    print ("Valve1 state:"+str(Valve1._state))
-    print ("Pump1 state:"+str(Pump1._state))
-    print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1._flowIn))
+    #print ("Valve1 state:"+str(Valve1._state))
+    #print ("Pump1 state:"+str(Pump1._state))
+    #print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1._flowIn))
 
     if(Valve1._state==0 and ChlorineTankPump1._state!=False):
         for j in range(2):
@@ -434,7 +434,7 @@ while(True):
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
     if((Valve1._state!=0 or Valve2._state!=0 or Valve3._state!=0) and Pump1._state==0):
-        print("Valve 1 is opened and pump1 is closed")
+        #print("Valve 1 is opened and pump1 is closed")
         for j in range(2):
             i=1501
             try:
@@ -550,7 +550,7 @@ while(True):
             else:
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
-    if(Valve7._state!=0) and Pump2._state==0:
+    if(Valve7._state!=0 and Pump2._state==0):
         for j in range(2):
             i=1512
             try:
@@ -649,24 +649,37 @@ while(True):
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
 
-    print ("Pump1, State: "+ str(Pump1._state)+"; Pump3, state: "+str(Pump3._state))
+    #print ("Pump1, State: "+ str(Pump1._state)+"; Pump3, state: "+str(Pump3._state))
 
     print ("PipetoRetentionTank1, flow: "+str(PipeToRetentionTank1._flow))
     print ("Retentiontank1, flowin: "+str(RetentionTank1._flowIn))
     print ("Retentiontank1, flowout: "+str(RetentionTank1._flowOut))
     print ("Retention1, WaterLevel: "+ str(RetentionTank1.getWaterLevel()))
-    print ("Retention1, FlowOut: "+ str(RetentionTank1._flowOut))
     print ("RetentionToStoragePipe1, FlowIn: "+ str(RetentionToStoragePipe1._flowIn))
     print ("RetentionToStoragePipe1, FlowOut: "+ str(RetentionToStoragePipe1._flowOut))
     print ("RetentionToStoragePipe1, Flow: "+ str(RetentionToStoragePipe1._flow))
-    print ("Pump3, Flow: "+ str(Pump3._flow))
-    print ("Pump3, State: "+ str(Pump3._state))
-    print ("Pump3, State: "+ str(Valve4._state))
+    #print ("Pump3, Flow: "+ str(Pump3._flow))
+    #print ("Pump3, State: "+ str(Pump3._state))
+    #print ("Pump3, State: "+ str(Valve4._state))
     print ("PipetoRetentionTank1, cl at start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
     print ("Tank1 cl in:" +str(RetentionTank1._chlorineFlowComponentIn))
     print ("Retention tank1 cl:" +str(RetentionTank1.getChlorineConcentration(0)))
-    print ("Pump1 flow: "+str(Pump1._flow))
-    print ("PipefromWell flow:"+str(PipeFromWell._flowIn)+";"+str(PipeFromWell._flowOut)+";"+str(PipeFromWell._flow))
+    #print ("Pump1 flow: "+str(Pump1._flow))
+    #print ("PipefromWell flow:"+str(PipeFromWell._flowIn)+";"+str(PipeFromWell._flowOut)+";"+str(PipeFromWell._flow))
+    print ("Storage Tank flowin:"+str(StorageTank._flowIn))
+    print ("Storgage Tank water level:"+str(StorageTank.getWaterLevel()))
+    print ("Storage Tank cl in:"+str(StorageTank._chlorineFlowComponentIn))
+    print ("Cl concentration at storage tank:"+str(StorageTank.getChlorineConcentration(0)))
+    
+    print ("Valve4 state:"+str(Valve4._state))
+    print ("Valve6 state:"+str(Valve6._state))
+    print ("Valve7 state:"+str(Valve7._state))
+    print ("StoragetoReservoir flow:"+str(StoragePumpToValve._flow)+"; flowIn:"+str(StoragePumpToValve._flowIn)+"; flowOut:"+str(StoragePumpToValve._flowOut))
+    print ("Storage Tank flowin:"+str(Reservoir._flowIn))
+    print ("Reservoir water level:"+str(Reservoir.getWaterLevel()))
+    print ("Cl concentration at reservoir:"+str(Reservoir.getChlorineConcentration(0)))
+
+
     print ("\n\n\n\n\n\n")
 
 
