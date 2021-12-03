@@ -17,6 +17,7 @@ class TankThreeInlet(BaseComponent):
         self._flowIn=flowIn
         self._pipeInIDs=[]
         self._allflowIns={}
+        self._allflowClIns={}
         self._flowOut=flowOut
         self._chlorineFlowComponentIn=0
         self._chlorineConcentration=0
@@ -41,13 +42,16 @@ class TankThreeInlet(BaseComponent):
         #stack=inspect.stack()
         #print (stack[1][0])
         self._allflowIns[str(id)]=flowIn
+        self._allflowClIns[str(id)]=chlorineIn
 
         if(id not in self._pipeInIDs):
             self._pipeInIDs.append(id)
 
         self._flowIn=0
+        self._chlorineFlowComponentIn=0
         for inid in self._pipeInIDs:
             self._flowIn=self._flowIn+self._allflowIns[str(inid)]
+            self._chlorineFlowComponentIn=self._chlorineFlowComponentIn+self._allflowClIns[str(inid)]
 
         #print ("Three inlet tank , update flow in called, flowIn:"+str(self._flowIn))
         self._chlorineFlowComponentIn=chlorineIn
@@ -87,7 +91,10 @@ class TankThreeInlet(BaseComponent):
         return self._waterLevel
     
     def getHydroPressure(self):
-        return self._waterLevel*10    
+        return self._waterLevel*10 
+
+    def getChlorineConcentration(self, x):
+        return self._chlorineConcentration   
 
         
     def __call__(self):

@@ -347,7 +347,7 @@ class ModbusTcpServer(socketserver.ThreadingTCPServer):
         :param request: The request to handle
         :param client: The address of the client
         """
-        print("Started thread to serve client at " + str(request.getsockname()))
+        #print("Started thread to serve client at " + str(request.getsockname()))
         self.broker.notifier(request.getsockname())
         _logger.debug("Started thread to serve client at " + str(client))
         socketserver.ThreadingTCPServer.process_request(self, request, client)

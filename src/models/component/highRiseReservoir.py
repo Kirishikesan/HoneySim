@@ -59,6 +59,9 @@ class HighRiseReservoir(BaseComponent):
     def getHydroPressure(self):
         return self._waterLevel*10
 
+    def getChlorineConcentration(self, x):
+        return self._chlorineConcentration
+
     def __call__(self):
         self.updateFlowIn(self._componentIn.getFlow())
 

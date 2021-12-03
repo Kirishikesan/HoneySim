@@ -1,7 +1,7 @@
 from models.actuator.baseActuator import BaseActuator
 
 class Pump(BaseActuator):
-    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=2,address=0):
+    def __init__(self,componentIn,componentOut,resolution,maxFlow,minFlow,state=0,register=1,address=0):
         super().__init__(componentIn,componentOut)
         self._state=state
         self._maxFlow=maxFlow
@@ -20,17 +20,17 @@ class Pump(BaseActuator):
         print(state,self._state)
         
         # self._flow=min((self._maxFlow-self._minFlow)*(self._state/(2**self._resolution)),self._componentOut._flowOut)
-        # print ("Pump state changed "+str(self._flow))
+        print ("Pump state changed: "+str(self._maxFlow)+"; "+str(self._componentOut._flowOut))
 
         self._componentIn.updateFlowOut(self._flow)
 
     def update(self,modbusServer):
-        print("Pump update method called")
+        #print("Pump update method called")
         reg=[]
         reg=list(modbusServer.get(self._register,self._address,1))
         # print(reg)
         # # print("Actuator modified through modbus {}".format(self))
-        # print("Pump update method called "+ str(reg[0]))
+        print("Pump update method called "+ str(reg))
 
         if(reg[0]!=self._state):
             self.setState(reg[0])

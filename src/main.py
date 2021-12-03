@@ -146,6 +146,9 @@ RetentionTank1ChlorineSensor=GasConcentrationSensor(RetentionTank1)
 RetentionTank2ChlorineSensor=GasConcentrationSensor(RetentionTank2)
 RetentionTank3ChlorineSensor=GasConcentrationSensor(RetentionTank3)
 
+StorageTankChlorineSensor=GasConcentrationSensor(StorageTank)
+ReserviorChlorineSensor=GasConcentrationSensor(Reservoir)
+
 Pump3FlowSensor=FlowMeterSensor(RetentionToStoragePipe1)
 Pump3PressureSensor=HydroPressureSensor(RetentionToStoragePipe1)
 
@@ -216,6 +219,12 @@ Device27Modbus.run()
 Device28Modbus=ModbusServer("",1527,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
 Device28Modbus.run()
 
+Device29Modbus=ModbusServer("",1528,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
+Device29Modbus.run()
+Device30Modbus=ModbusServer("",1529,"DULCOMARIN-3","","https://www.prominent.com/","Modbus RTU RS 485 Chlorine Measurement Controller","TM DC 001")
+Device30Modbus.run()
+
+
 
 Device1=BaseDevice("WellDevice",1500,Device1Modbus)
 Device2=BaseDevice("Pump1Device",1501,Device2Modbus)
@@ -244,6 +253,9 @@ Device25=BaseDevice("Pump5",1524,Device25Modbus)
 Device26=BaseDevice("RetentionTank1ClSensor",1525,Device26Modbus)
 Device27=BaseDevice("RetentionTank2ClSensor",1526,Device27Modbus)
 Device28=BaseDevice("RetentionTank3ClSensor",1527,Device28Modbus)
+
+Device29=BaseDevice("StorageTankClSensor",1528,Device29Modbus)
+Device30=BaseDevice("ReserviorClSensor",1529,Device30Modbus)
 
 
 #Device17=BaseDevice("ChlorinePump1Device",1516,Device17Modbus)
@@ -336,6 +348,9 @@ Device26.addSensor(RetentionTank1ChlorineSensor)
 Device27.addSensor(RetentionTank2ChlorineSensor)
 Device28.addSensor(RetentionTank3ChlorineSensor)
 
+Device29.addSensor(StorageTankChlorineSensor)
+Device30.addSensor(ReserviorChlorineSensor)
+
 
 ##Test ICS Run Demo
 # print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
@@ -354,7 +369,14 @@ time.sleep(5)
 print ("Well, flow: "+ str(RiverWell.getFlow()))
 print ("PipeFromWell, flow: "+ str(PipeFromWell.getFlow()))
 print ("PipetoRetention1, flow: "+ str(PipeToRetentionTank1.getFlow()))
+
+
 while(True):
+
+    print ("Valve1 state:"+str(Valve1._state))
+    print ("Pump1 state:"+str(Pump1._state))
+    print ("PipetoRetention1, flowIn: "+ str(PipeToRetentionTank1._flowIn))
+
     if(Valve1._state==0 and ChlorineTankPump1._state!=False):
         for j in range(2):
             i=1525
@@ -412,6 +434,7 @@ while(True):
                 c.close()
                 print("Pump at  : {} closed failed".format(i))
     if((Valve1._state!=0 or Valve2._state!=0 or Valve3._state!=0) and Pump1._state==0):
+        print("Valve 1 is opened and pump1 is closed")
         for j in range(2):
             i=1501
             try:
@@ -420,6 +443,7 @@ while(True):
                 print ("Error with host or port params")
             if c.open():
                 c.write_single_coil(0,1)
+                c.write_single_register(0,65000)
                 c.close()
                 print("Pump at  : {} opened successful".format(i))
             else:
@@ -625,7 +649,7 @@ while(True):
                 c.close()
                 print("Valve at  : {} closed failed".format(i))
 
-    print ("Pump1, State: "+ str(Pump1._state))
+    print ("Pump1, State: "+ str(Pump1._state)+"; Pump3, state: "+str(Pump3._state))
 
     print ("PipetoRetentionTank1, flow: "+str(PipeToRetentionTank1._flow))
     print ("Retentiontank1, flowin: "+str(RetentionTank1._flowIn))
@@ -641,7 +665,8 @@ while(True):
     print ("PipetoRetentionTank1, cl at start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
     print ("Tank1 cl in:" +str(RetentionTank1._chlorineFlowComponentIn))
     print ("Retention tank1 cl:" +str(RetentionTank1.getChlorineConcentration(0)))
-    print ("Pupm1 flow: "+str(Pump1FlowSensor.getValue()))
+    print ("Pump1 flow: "+str(Pump1._flow))
+    print ("PipefromWell flow:"+str(PipeFromWell._flowIn)+";"+str(PipeFromWell._flowOut)+";"+str(PipeFromWell._flow))
     print ("\n\n\n\n\n\n")
 
 
