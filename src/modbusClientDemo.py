@@ -114,7 +114,7 @@ for j in range(2):
             c.close()
             print("Write failed at address  : {}".format(i))
 
-
+'''
 while(True):
     # for i in range(1501,1502):
 
@@ -250,3 +250,4 @@ while(True):
 
       
 
+'''

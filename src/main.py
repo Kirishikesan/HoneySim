@@ -661,7 +661,10 @@ while(True):
     #print ("Pump3, Flow: "+ str(Pump3._flow))
     #print ("Pump3, State: "+ str(Pump3._state))
     #print ("Pump3, State: "+ str(Valve4._state))
+    print ("Cl pump1 , state:"+str(ChlorineTankPump1._state))
+    print ("Cl pump1 flow:"+str(ChlorineTankPump1._flow))
     print ("PipetoRetentionTank1, cl at start:"+str(PipeToRetentionTank1._chlorineConcentrationAtStart))
+    print ("PipetoRetentionTank1, cl from cl tank:"+str(PipeToRetentionTank1._chlorineFlowClTank))
     print ("Tank1 cl in:" +str(RetentionTank1._chlorineFlowComponentIn))
     print ("Retention tank1 cl:" +str(RetentionTank1.getChlorineConcentration(0)))
     #print ("Pump1 flow: "+str(Pump1._flow))
@@ -671,14 +674,15 @@ while(True):
     print ("Storage Tank cl in:"+str(StorageTank._chlorineFlowComponentIn))
     print ("Cl concentration at storage tank:"+str(StorageTank.getChlorineConcentration(0)))
     
-    print ("Valve4 state:"+str(Valve4._state))
-    print ("Valve6 state:"+str(Valve6._state))
-    print ("Valve7 state:"+str(Valve7._state))
-    print ("StoragetoReservoir flow:"+str(StoragePumpToValve._flow)+"; flowIn:"+str(StoragePumpToValve._flowIn)+"; flowOut:"+str(StoragePumpToValve._flowOut))
-    print ("Storage Tank flowin:"+str(Reservoir._flowIn))
-    print ("Reservoir water level:"+str(Reservoir.getWaterLevel()))
-    print ("Cl concentration at reservoir:"+str(Reservoir.getChlorineConcentration(0)))
+    #print ("Valve4 state:"+str(Valve4._state))
+    #print ("Valve6 state:"+str(Valve6._state))
+    #print ("Valve7 state:"+str(Valve7._state))
+    #print ("StoragetoReservoir flow:"+str(StoragePumpToValve._flow)+"; flowIn:"+str(StoragePumpToValve._flowIn)+"; flowOut:"+str(StoragePumpToValve._flowOut))
+    #print ("Storage Tank flowin:"+str(Reservoir._flowIn))
+    #print ("Reservoir water level:"+str(Reservoir.getWaterLevel()))
+    #print ("Cl concentration at reservoir:"+str(Reservoir.getChlorineConcentration(0)))
 
+    
 
     print ("\n\n\n\n\n\n")
 

@@ -43,7 +43,7 @@ class Pipeline(BaseComponent):
     def updateFlowIn(self,flowIn, chlorineIn, id):
         self._flowIn=flowIn
         self._tempCl=chlorineIn
-        print ("Pipeline flowin changed, flowin:"+str(flowIn))
+        #print ("Pipeline flowin changed, flowin:"+str(flowIn))
         self.updateFlow()
 
     def updateChlorineFromTankIn(self, chlorineFromTank):
@@ -51,10 +51,12 @@ class Pipeline(BaseComponent):
             self._chlorineFlowClTank = chlorineFromTank
         else:
             self._chlorineFlowClTank =0
+        
+        #print ("Update chlroine inflow from tank in pipeline:"+str(chlorineFromTank)+";"+str(self._chlorineFlowClTank))
 
     def updateFlow(self):
         self._flow=min(self._flowIn,self._flowOut)
-        print ("pipeline flow changed, flow:" + str(self._flow)+"; flowin:"+str(self._flowIn)+"; flowout:"+str(self._flowOut))
+        #print ("pipeline flow changed, flow:" + str(self._flow)+"; flowin:"+str(self._flowIn)+"; flowout:"+str(self._flowOut))
         if(self._flow>0):
             self._chlorineFlowComponentIn=self._tempCl
 
@@ -128,6 +130,6 @@ class Pipeline(BaseComponent):
         return 350000
 
     def __call__(self):
-        print ("Pipeline call method calleds \n\n\n\n\n")
+        #print ("Pipeline call method calleds \n\n\n\n\n")
         self.updateFlowIn(self._componentIn.getFlow())
 
