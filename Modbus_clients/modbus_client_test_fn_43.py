@@ -1,8 +1,13 @@
 from pymodbus.client.sync import ModbusTcpClient
 from pymodbus.mei_message import ReadDeviceInformationRequest
 from pymodbus.device import *
+from pyModbusTCP.client import ModbusClient
 
-client = ModbusTcpClient('192.168.8.182','5020')
+#client=ModbusTcpClient(192.168.122.2,5020)
+try:
+    client=ModbusClient(host="127.0.0.1", port=1502, unit_id=1, auto_open=True, debug=False)
+except ValueError:
+    print ("Error with host or port params")
 result1 = client.read_coils(9,10)
 result2 = client.read_holding_registers(0, 11)
 result3 = client.read_input_registers(0, 11)
